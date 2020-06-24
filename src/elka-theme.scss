@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+// incldues basic angular material style
+@include mat-core();
+
+$elka-theme-primary: mat-palette($mat-red, 900);
+$elka-theme-accent: mat-palette($mat-red, 800);
+$elka-theme-warn: mat-palette($mat-red);
+
+$elka-theme: mat-light-theme($elka-theme-primary, $elka-theme-accent, $elka-theme-warn);
+
+@include angular-material-theme($elka-theme)
