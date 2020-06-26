@@ -1,0 +1,64 @@
+
+:host {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 2;
+
+  h1, h2 {
+    color: white;
+  }
+
+  .headings {
+    margin-top: 60px;
+  }
+}
+
+
+mat-card {
+  padding: 0;
+  width: 60%;
+  height: 75%;
+}
+
+mat-form-field {
+  display: inline-block;
+}
+
+.red{
+  background: darkred;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-container {
+  width: 65%;
+  margin: auto;
+  text-align: center;
+
+  mat-form-field {
+    width: 100%;
+  }
+}

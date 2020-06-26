@@ -2,37 +2,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AngularFireModule } from '@angular/fire'
 import { AngularFireDatabaseModule } from '@angular/fire/database'
 
 // Project-specific Modules
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment'
+import { MaterialModule } from './material.module';
 
 // Components
 import { AppComponent } from './app.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     // Angular
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
 
     // Material
-    MatButtonModule,
-    MatInputModule,
-
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

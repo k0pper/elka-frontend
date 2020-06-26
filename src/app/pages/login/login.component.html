@@ -1,0 +1,109 @@
+<mat-card>
+  <mat-grid-list cols="2" rowHeight="75vh">
+    <mat-grid-tile class="login-container" [colspan]="1" [rowspan]="1">
+
+
+      <!-- Username -->
+      <div class="form-container">
+        <mat-form-field>
+          <mat-label>IZ-Acccount</mat-label>
+          <input matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher"
+            placeholder="IZ-Benutzernamen eingeben">
+          <mat-hint>z.B. mamu0001@hs-karlsruhe.de</mat-hint>
+          <mat-error *ngIf="usernameFormControl.hasError('email') && !usernameFormControl.hasError('required')">
+            Keine valide E-Mail Adresse
+          </mat-error>
+          <mat-error *ngIf="usernameFormControl.hasError('required')">
+            IZ-Benutzername ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+
+      <div style="margin: 20px;"></div>
+
+      <!-- Password -->
+      <mat-form-field class="example-full-width">
+
+        <mat-label>Passwort</mat-label>
+        <input matInput type="password"
+        [formControl]="passwordFormControl"
+        [type]="hide ? 'password' : 'text'"
+        [errorStateMatcher]="matcher"
+        placeholder="IZ-Passwort eingeben">
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password ist <strong>erforderlich</strong>
+        </mat-error>
+      </mat-form-field>
+
+        <div style="margin: 20px;"></div>
+
+        <mat-error *ngIf="error">{{error}}</mat-error>
+
+        <div style="margin: auto; text-align: center;">
+          <mat-spinner *ngIf="loading" diameter=20></mat-spinner>
+        </div>
+
+        <div style="margin: 20px;"></div>
+        <button [disabled]="hasError() || loading" mat-raised-button color="primary" (click)="signIn()" >Sign In</button>
+
+      </div>
+
+
+
+
+
+      <!-- <form class="example-form">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>IZ-Acccount</mat-label>
+          <input matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher"
+            placeholder="IZ-Benutzernamen eingeben">
+          <mat-hint>z.B. mamu0001@hs-karlsruhe.de</mat-hint>
+          <mat-error *ngIf="usernameFormControl.hasError('email') && !usernameFormControl.hasError('required')">
+            Keine valide E-Mail Adresse
+          </mat-error>
+          <mat-error *ngIf="usernameFormControl.hasError('required')">
+            IZ-Benutzername ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+
+          <mat-label>Passwort</mat-label>
+          <input matInput type="password"
+          [formControl]="passwordFormControl"
+          [type]="hide ? 'password' : 'text'"
+          [errorStateMatcher]="matcher"
+          placeholder="IZ-Passwort eingeben">
+          <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Password ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button class="sign-in-button" color="primary">SIGN IN</button>
+
+      </form> -->
+
+    </mat-grid-tile>
+
+    <mat-grid-tile class="red" [colspan]="1" [rowspan]="1">
+      <img src="assets/images/login-students.png" class="oversize">
+      <div class="text-overlay">
+        <div class="headings">
+          <h1>ELKA</h1>
+          <h2>Dein innovativer all-in-one Studienplaner</h2>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</mat-card>
