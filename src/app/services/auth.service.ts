@@ -1,61 +1,55 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { auth } from 'firebase';
+import { UserService } from './users.service';
+import { User, ROLES } from '../model/user';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  authState: any = null;
+export class AuthService implements OnInit{
+  user: firebase.User;
 
-  constructor(private auth: AngularFireAuth, private router: Router) {
-    this.auth.authState.subscribe((auth => {
-      this.authState = auth;
-    }))
+  ngOnInit(): any {}
+
+  constructor(private afAuth: AngularFireAuth, private userService: UserService, private router: Router) {
+    afAuth.authState.subscribe(user => {
+      this.user = user;
+    });
   }
 
-  get isUserAnonymousLoggedIn(): boolean {
-    return (this.authState !== null) ? this.authState.isAnonymous : false
+  signIn(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  get currentUserId(): string {
-    return (this.authState !== null) ? this.authState.uid : ''
+  signOut(redirect) {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.clearLocalStorage();
+      this.router.navigateByUrl('/auth');
+    })
   }
 
-  get currentUserName(): string {
-    return this.authState['email']
-  }
-
-  get currentUser(): any {
-    return (this.authState !== null) ? this.authState : null;
-  }
-
-  get isUserEmailLoggedIn(): boolean {
-    if ((this.authState !== null) && (!this.isUserAnonymousLoggedIn)) {
-      return true
-    } else {
-      return false
+  setLocalStorage (authState) {
+    if (authState) {
+      let userModel: User;
+      this.userService.getUserById(authState.user.uid).valueChanges().subscribe((snapshot: any) => {
+        userModel = new User(snapshot.id, snapshot.email, snapshot.roles);
+        localStorage.setItem('user', JSON.stringify(userModel));
+      });
     }
   }
 
-  loginWithEmail(email: string, password: string): any {
-    return this.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user
-        return this.authState
-      })
-      .catch(error => {
-        console.log(error)
-        throw error
-        return this.authState
-      });
+  clearLocalStorage() {
+    localStorage.setItem('user', null);
+    JSON.parse(localStorage.getItem('user'));
   }
 
-  singout(): void {
-    this.auth.signOut();
-    this.router.navigate(['/auth']);
+  getCurrentUser(): firebase.User {
+    return this.user;
   }
+
 
 
 }

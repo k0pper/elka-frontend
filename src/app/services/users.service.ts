@@ -28,4 +28,9 @@ export class UserService {
   getUsersList(): AngularFirestoreCollection<User> {
     return this.usersCollection;
   }
+
+  getUserById(id: string): AngularFirestoreDocument<User> {
+    console.log("getuserid", id)
+    return this.usersCollection.doc(id);
+  }
 }

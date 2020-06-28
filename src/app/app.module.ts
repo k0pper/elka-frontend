@@ -15,12 +15,14 @@ import { MaterialModule } from './material.module';
 // Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ChooserComponent } from './pages/app-chooser/chooser.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ChooserComponent
   ],
   imports: [
     // Angular

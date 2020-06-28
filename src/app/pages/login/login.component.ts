@@ -44,18 +44,11 @@ export class LoginComponent implements OnInit {
     let password = this.passwordFormControl.value;
 
     this.loading = true;
-    this.authservice.loginWithEmail(username, password)
-      .then((authstate) => {
-
-        let user = new User(authstate.user.uid, username, [ROLES.STUDENT, ROLES.ADMINISTRATION]);
-        this.userService.createUser(user);
-        this.loading = false;
-        this.router.navigate(['/bob'])
-      }).catch(_error => {
-        this.loading = false;
-        console.log(_error)
-        this.error = "Die Kombination aus IZ-Account und Passwort wurde nicht gefunden"
-        this.router.navigate(['/auth'])
+    this.authservice.signIn(username, password)
+      .then((authState: auth.UserCredential) => {
+        this.handleSuccessfulLogin(authState);
+      }).catch(error => {
+        this.handleFailedLogin(error);
       })
   }
 
@@ -65,6 +58,29 @@ export class LoginComponent implements OnInit {
         this.usernameFormControl.hasError('email') ||
         this.passwordFormControl.hasError('required'))
     return hasError;
+  }
+
+  handleSuccessfulLogin(authState: auth.UserCredential) {
+    this.userService.getUserById(authState.user.uid).valueChanges().subscribe((snapshot) => {
+      if (snapshot) {
+        console.log("user exists")
+        console.log(snapshot)
+      } else {
+        console.log("user doesnt exist. creating...")
+        let user = new User(authState.user.uid, authState.user.email, [ROLES.STUDENT, ROLES.ADMINISTRATION]);
+        this.userService.createUser(user);
+      }
+      this.loading = false;
+      this.router.navigateByUrl('/chooser')
+      this.authservice.setLocalStorage(authState);
+
+    });
+  }
+
+  handleFailedLogin(authState: auth.UserCredential | any) {
+    this.loading = false;
+    this.error = "Die Kombination aus IZ-Account und Passwort wurde nicht gefunden"
+    this.authservice.clearLocalStorage();
   }
 
 }
