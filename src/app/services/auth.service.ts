@@ -33,9 +33,17 @@ export class AuthService implements OnInit{
 
   setLocalStorage (authState) {
     if (authState) {
+      console.log("Put user into local storage")
       let userModel: User;
       this.userService.getUserById(authState.user.uid).valueChanges().subscribe((snapshot: any) => {
-        userModel = new User(snapshot.id, snapshot.email, snapshot.roles);
+         userModel = new User(snapshot.id)
+          .setEmail(snapshot.email)
+          .setFirstName(snapshot.firstName)
+          .setLastName(snapshot.lastName)
+          .setRoles(snapshot.roles)
+          .setAddress(snapshot.address)
+          .setPlannedDegree(snapshot.plannedDegree);
+
         localStorage.setItem('user', JSON.stringify(userModel));
       });
     }
@@ -46,10 +54,7 @@ export class AuthService implements OnInit{
     JSON.parse(localStorage.getItem('user'));
   }
 
-  getCurrentUser(): firebase.User {
-    return this.user;
+  getCurrentUser(): User {
+      return JSON.parse(localStorage.getItem('user'));
   }
-
-
-
 }

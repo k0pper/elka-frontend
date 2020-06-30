@@ -6,6 +6,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/users.service';
 import { User, ROLES } from 'src/app/model/user';
 import { auth } from 'firebase';
+import { Address } from 'src/app/model/address';
+import { DegreeService } from 'src/app/services/degree.service';
+import { Degree } from 'src/app/model/degree';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -21,7 +24,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
   constructor(private authservice: AuthService, private userService: UserService,
-    private router: Router) { }
+    private router: Router, private degreeService: DegreeService) { }
 
   hide = true;
   error = null;
@@ -37,12 +40,17 @@ export class LoginComponent implements OnInit {
   ]);
 
   ngOnInit(): void {
+    // let degree: Degree = new Degree();
+    // degree.setName("IT-Projektmanagement")
+    //   .setDescription("IT Projekte managen. Ist der Name nicht selbsterklärend?")
+    //   .setShortName("ITP")
+    //   .setEctsNeeded(210);
+    // this.degreeService.createDegree(degree);
   }
 
   signIn() {
     let username = this.usernameFormControl.value;
     let password = this.passwordFormControl.value;
-
     this.loading = true;
     this.authservice.signIn(username, password)
       .then((authState: auth.UserCredential) => {
@@ -67,12 +75,33 @@ export class LoginComponent implements OnInit {
         console.log(snapshot)
       } else {
         console.log("user doesnt exist. creating...")
-        let user = new User(authState.user.uid, authState.user.email, [ROLES.STUDENT, ROLES.ADMINISTRATION]);
-        this.userService.createUser(user);
+        let address: Address = new Address()
+          .setStreet('Musterstraße')
+          .setHouseNumber(6)
+          .setCity('Karlsruhe')
+          .setCountryCode('DE');
+
+        let plannedDegree: Degree;
+        this.degreeService.getDegreeByShortName('IWI').valueChanges().subscribe( (degree: Degree) => {
+          plannedDegree = degree;
+
+          let user = new User(authState.user.uid)
+            .setEmail(authState.user.email)
+            .setFirstName("Max")
+            .setLastName("Mustermann")
+            .setRoles([ROLES.STUDENT, ROLES.ADMINISTRATION])
+            .setAddress(address)
+            .setPlannedDegree(plannedDegree);
+
+          this.userService.createUser(user);
+        })
+
+
+
       }
       this.loading = false;
-      this.router.navigateByUrl('/chooser')
       this.authservice.setLocalStorage(authState);
+      this.router.navigateByUrl('/chooser')
 
     });
   }

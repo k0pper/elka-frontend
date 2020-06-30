@@ -1,4 +1,15 @@
-<button mat-raised-button color="primary" (click)="signOut()">Sign Out</button>
-{{user?.email}}
+<div class="header">
+  <div class="greeting">
+    <h1>Willkommen zurück, {{user?.firstName}}! Wähle eine Anwendung aus.</h1>
+  </div>
+  <div class="email">
+    <h2>{{user?.email}}</h2>
+  </div>
+</div>
 
-<button mat-raised-button color="accent" (click)="logLocal()">local</button>
+<div class="container">
+  <div [ngClass]="['box', app.class]" (click)="routeTo(app.link)" *ngFor="let app of apps">
+    <h2>{{app.name}}</h2>
+    <h3>{{app.descr}}</h3>
+  </div>
+</div>

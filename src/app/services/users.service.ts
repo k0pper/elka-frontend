@@ -16,13 +16,19 @@ export class UserService {
     this.usersCollection = db.collection(this.usersPath);
   }
 
-  createUser(user: User): void {
+  createUser(user: any): void {
     console.log("creating user");
     console.log(user);
-
     this.userDocument = this.usersCollection.doc(user.id);
-    console.log(this.usersPath);
-    this.userDocument.set({...user});
+
+
+
+    this.userDocument.set({
+      ...user,
+      address: {
+        ...user.address
+      }
+    });
   }
 
   getUsersList(): AngularFirestoreCollection<User> {

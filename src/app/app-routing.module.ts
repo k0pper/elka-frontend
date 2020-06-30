@@ -5,9 +5,14 @@ import { ChooserComponent } from './pages/app-chooser/chooser.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'auth', component: LoginComponent },
-  { path: 'chooser', component: ChooserComponent }
+  { path: 'chooser', component: ChooserComponent },
+  {
+    path: 'bob',
+    loadChildren: () => import('./apps/bob/bob.module').then(m => m.BobModule)
+  },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+
 ];
 
 @NgModule({

@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>ELKA</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+      <div class="user-info">
+        <div>{{user.email}}</div>
+        <div>{{user.firstName}} {{user.lastName}}</div>
+      </div>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Profil</button>
+  <button mat-menu-item [routerLink]="['/chooser']">App Wechseln</button>
+  <button mat-menu-item (click)="signOut('auth')">Abmelden</button>
+</mat-menu>
+
+<router-outlet></router-outlet>
