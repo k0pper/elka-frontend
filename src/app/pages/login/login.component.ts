@@ -95,9 +95,6 @@ export class LoginComponent implements OnInit {
 
           this.userService.createUser(user);
         })
-
-
-
       }
       this.loading = false;
       this.authservice.setLocalStorage(authState);

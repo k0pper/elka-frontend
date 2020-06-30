@@ -51,7 +51,6 @@ export class AuthService implements OnInit{
 
   clearLocalStorage() {
     localStorage.setItem('user', null);
-    JSON.parse(localStorage.getItem('user'));
   }
 
   getCurrentUser(): User {
