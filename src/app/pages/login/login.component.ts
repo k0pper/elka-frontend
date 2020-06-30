@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
           .setCountryCode('DE');
 
         let plannedDegree: Degree;
-        this.degreeService.getDegreeByShortName('IWI').valueChanges().subscribe( (degree: Degree) => {
+        this.degreeService.getDegreeByShortName('IWI').valueChanges().subscribe((degree: Degree) => {
           plannedDegree = degree;
 
           let user = new User(authState.user.uid)

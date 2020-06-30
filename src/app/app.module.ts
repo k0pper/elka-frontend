@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ChooserComponent } from './pages/app-chooser/chooser.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +36,7 @@ import { ChooserComponent } from './pages/app-chooser/chooser.component';
     AngularFireDatabaseModule,
 
     // Material
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

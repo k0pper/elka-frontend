@@ -10,14 +10,27 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { OverviewComponent } from './overview/overview.component';
 import { BobRoutingModule } from './bob.routing.module';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+
 @NgModule({
   imports: [
     CommonModule,
+    BobRoutingModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    BobRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    FlexLayoutModule
   ],
   exports: [],
   declarations: [BobComponent, OverviewComponent],

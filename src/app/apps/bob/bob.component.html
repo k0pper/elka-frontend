@@ -13,8 +13,11 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item>Profil</button>
+  <button mat-raised-button (click)="downloadJson()">Export</button>
   <button mat-menu-item [routerLink]="['/chooser']">App Wechseln</button>
   <button mat-menu-item (click)="signOut('auth')">Abmelden</button>
 </mat-menu>
 
-<router-outlet></router-outlet>
+<div class="bob-content">
+  <router-outlet></router-outlet>
+</div>

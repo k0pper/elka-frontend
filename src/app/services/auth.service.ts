@@ -8,10 +8,10 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit{
+export class AuthService implements OnInit {
   user: firebase.User;
 
-  ngOnInit(): any {}
+  ngOnInit(): any { }
 
   constructor(private afAuth: AngularFireAuth, private userService: UserService, private router: Router) {
     afAuth.authState.subscribe(user => {
@@ -31,12 +31,12 @@ export class AuthService implements OnInit{
     })
   }
 
-  setLocalStorage (authState) {
+  setLocalStorage(authState) {
     if (authState) {
       console.log("Put user into local storage")
       let userModel: User;
       this.userService.getUserById(authState.user.uid).valueChanges().subscribe((snapshot: any) => {
-         userModel = new User(snapshot.id)
+        userModel = new User(snapshot.id)
           .setEmail(snapshot.email)
           .setFirstName(snapshot.firstName)
           .setLastName(snapshot.lastName)
@@ -54,6 +54,10 @@ export class AuthService implements OnInit{
   }
 
   getCurrentUser(): User {
-      return JSON.parse(localStorage.getItem('user'));
+    this.afAuth.currentUser;
+    console.log("currently logged in used:")
+    console.log(this.afAuth.currentUser);
+
+    return JSON.parse(localStorage.getItem('user'));
   }
 }
