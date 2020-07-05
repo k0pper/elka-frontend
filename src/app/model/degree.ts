@@ -1,9 +1,12 @@
+import { Course } from './course';
+
 // Abschluss / Studiengang
 export class Degree {
   name: string;
   shortName: string;
   description: string;
   ectsNeeded: number;
+  validCourses: Course[];
 
   constructor() {}
 
@@ -21,6 +24,17 @@ export class Degree {
   }
   setEctsNeeded(ectsNeeded: number): Degree {
     this.ectsNeeded = ectsNeeded;
+    return this;
+  }
+
+  setValidCourses(validCourses: Course[] | Course): Degree {
+    if (validCourses instanceof Course) {
+      this.validCourses = [validCourses]
+    } else if (validCourses instanceof Array) {
+      this.validCourses = validCourses;
+    } else {
+      console.error("parameter 'courses' in Degree.setCourses expected a different type of arg")
+    }
     return this;
   }
 }

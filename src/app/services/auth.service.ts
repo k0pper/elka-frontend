@@ -9,13 +9,15 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class AuthService implements OnInit {
-  user: firebase.User;
+  user: User;
 
-  ngOnInit(): any { }
+  ngOnInit(): any {}
 
   constructor(private afAuth: AngularFireAuth, private userService: UserService, private router: Router) {
     afAuth.authState.subscribe(user => {
-      this.user = user;
+      this.userService.getUserById(user.uid).valueChanges().subscribe((userObject: User) => {
+        this.user = userObject;
+      })
     });
   }
 
@@ -31,22 +33,24 @@ export class AuthService implements OnInit {
     })
   }
 
-  setLocalStorage(authState) {
-    if (authState) {
-      console.log("Put user into local storage")
-      let userModel: User;
-      this.userService.getUserById(authState.user.uid).valueChanges().subscribe((snapshot: any) => {
-        userModel = new User(snapshot.id)
-          .setEmail(snapshot.email)
-          .setFirstName(snapshot.firstName)
-          .setLastName(snapshot.lastName)
-          .setRoles(snapshot.roles)
-          .setAddress(snapshot.address)
-          .setPlannedDegree(snapshot.plannedDegree);
+  setLocalStorage(user) {
+    localStorage.setItem('user', JSON.stringify(user))
+    // if (authState) {
+    //   console.log("Put user into local storage")
+    //   let userModel: User;
+    //   this.userService.getUserById(authState.user.uid).valueChanges().subscribe((snapshot: any) => {
+    //     userModel = new User(snapshot.id)
+    //       .setEmail(snapshot.email)
+    //       .setFirstName(snapshot.firstName)
+    //       .setLastName(snapshot.lastName)
+    //       .setRoles(snapshot.roles)
+    //       .setAddress(snapshot.address)
+    //       .setPlannedDegree(snapshot.plannedDegree)
+    //       .setProgresses(snapshot.progresses);
 
-        localStorage.setItem('user', JSON.stringify(userModel));
-      });
-    }
+    //     localStorage.setItem('user', JSON.stringify(userModel));
+    //   });
+    // }
   }
 
   clearLocalStorage() {
@@ -54,10 +58,6 @@ export class AuthService implements OnInit {
   }
 
   getCurrentUser(): User {
-    this.afAuth.currentUser;
-    console.log("currently logged in used:")
-    console.log(this.afAuth.currentUser);
-
     return JSON.parse(localStorage.getItem('user'));
   }
 }

@@ -1,6 +1,7 @@
 import { Address } from './address';
 import { add } from 'lodash';
 import { Degree } from './degree';
+import { Progress } from './progress';
 
 export enum ROLES {
   STUDENT = "STUDENT",
@@ -17,6 +18,7 @@ export class User {
   roles: ROLES[]
   address: Address;
   plannedDegree: Degree;
+  progresses: Progress[];
 
   constructor(id) {
     this.id = id;
@@ -44,6 +46,10 @@ export class User {
   }
   setPlannedDegree(plannedDegree: Degree): User {
     this.plannedDegree = plannedDegree;
+    return this;
+  }
+  setProgresses(progresses: Progress[]): User {
+    this.progresses = progresses;
     return this;
   }
 }

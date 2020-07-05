@@ -19,4 +19,26 @@ export class OverviewComponent implements OnInit {
     this.loading = false;
   }
 
+  getCurrentSemester() {
+    return this.userService.getCurrentProgress(this.user).currentSemester;
+  }
+
+  getFinishedEcts() {
+    return this.userService.getFinishedEcts(this.user);
+  }
+
+  getRemainingEcts() {
+    return this.userService.getRemainingEcts(this.user);
+  }
+
+  getTempo(): number {
+    let tempo = this.userService.getFinishedEcts(this.user) /
+      this.userService.getCurrentProgress(this.user).semestersStudied;
+    return tempo;
+  }
+
+  getEctsProgress(): number {
+    return this.getFinishedEcts() / this.user.plannedDegree.ectsNeeded * 100;
+  }
+
 }

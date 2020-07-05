@@ -10,28 +10,28 @@
             </div>
             <div fxLayout=row fxLayoutAlign="start stretch">
               <div fxFlex="50"><b>Semester:</b></div>
-              <div fxFlex="50"> xxx </div>
+              <div fxFlex="50"> {{getCurrentSemester()}} </div>
             </div>
             <div fxLayout=row fxLayoutAlign="start stretch">
               <div fxFlex="50"><b>Abgeschlossene ECTS:</b></div>
-              <div fxFlex="50"> xxx </div>
+              <div fxFlex="50"> {{getFinishedEcts()}} </div>
             </div>
             <div fxLayout=row fxLayoutAlign="start stretch">
               <div fxFlex="50"><b>Verbleibende ECTS:</b></div>
-              <div fxFlex="50"> xxx </div>
+              <div fxFlex="50"> {{getRemainingEcts()}} </div>
             </div>
             <div fxLayout=row fxLayoutAlign="start stretch">
               <div fxFlex="50"><b>Geplante Kurse dieses Semester:</b></div>
-              <div fxFlex="50"> xxx </div>
+              <div fxFlex="50"> TODO </div>
             </div>
             <div fxLayout=row fxLayoutAlign="start stretch">
               <div fxFlex="50"><b>Aktuelles Tempo:</b></div>
-              <div fxFlex="50"> xxx </div>
+              <div fxFlex="50"> ~ {{getTempo() | number:'1.2-2'}} ECTS / Semester</div>
             </div>
             <div fxLayout=row fxLayoutAlign="start stretch">
               <div fxFlex="50"><b>ECTS Fortschritt</b></div>
               <div fxFlex="50" fxFlexAlign="center">
-                <mat-progress-bar mode="determinate" value="60"></mat-progress-bar>
+                <mat-progress-bar mode="determinate" [value]="getEctsProgress()"></mat-progress-bar>
               </div>
             </div>
 

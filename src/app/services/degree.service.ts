@@ -12,11 +12,10 @@ export class DegreeService {
   }
 
   createDegree(degree: any) {
-    console.log("Creating Degree")
+    console.log("degree courses")
+    console.log(degree.courses)
     this.degreeDocument = this.degreeCollection.doc(degree.shortName);
-    this.degreeDocument.set({
-      ...degree,
-    });
+    this.degreeDocument.set(JSON.parse( JSON.stringify(degree)))
   }
 
   getDegreeByShortName(shortName: string): AngularFirestoreDocument<Degree> {

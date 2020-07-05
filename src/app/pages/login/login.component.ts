@@ -9,6 +9,9 @@ import { auth } from 'firebase';
 import { Address } from 'src/app/model/address';
 import { DegreeService } from 'src/app/services/degree.service';
 import { Degree } from 'src/app/model/degree';
+import { DegreeFactory } from 'src/app/factory/degree.factory';
+import { AddressFactory } from 'src/app/factory/address.factory';
+import { ProgressFactory } from 'src/app/factory/progress.factory';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -40,12 +43,7 @@ export class LoginComponent implements OnInit {
   ]);
 
   ngOnInit(): void {
-    // let degree: Degree = new Degree();
-    // degree.setName("IT-Projektmanagement")
-    //   .setDescription("IT Projekte managen. Ist der Name nicht selbsterklärend?")
-    //   .setShortName("ITP")
-    //   .setEctsNeeded(210);
-    // this.degreeService.createDegree(degree);
+    this.degreeService.createDegree(DegreeFactory.getDegree())
   }
 
   signIn() {
@@ -69,35 +67,30 @@ export class LoginComponent implements OnInit {
   }
 
   handleSuccessfulLogin(authState: auth.UserCredential) {
-    this.userService.getUserById(authState.user.uid).valueChanges().subscribe((snapshot) => {
-      if (snapshot) {
+    this.userService.getUserById(authState.user.uid).valueChanges().subscribe((user: User) => {
+      if (user) {
         console.log("user exists")
-        console.log(snapshot)
+        console.log(user)
+        this.authservice.setLocalStorage(user);
       } else {
         console.log("user doesnt exist. creating...")
-        let address: Address = new Address()
-          .setStreet('Musterstraße')
-          .setHouseNumber(6)
-          .setCity('Karlsruhe')
-          .setCountryCode('DE');
-
+        let address = AddressFactory.getAddress();
         let plannedDegree: Degree;
-        this.degreeService.getDegreeByShortName('IWI').valueChanges().subscribe((degree: Degree) => {
+        this.degreeService.getDegreeByShortName('ITP').valueChanges().subscribe((degree: Degree) => {
           plannedDegree = degree;
-
           let user = new User(authState.user.uid)
             .setEmail(authState.user.email)
             .setFirstName("Max")
             .setLastName("Mustermann")
             .setRoles([ROLES.STUDENT, ROLES.ADMINISTRATION])
             .setAddress(address)
-            .setPlannedDegree(plannedDegree);
-
+            .setPlannedDegree(plannedDegree)
+            .setProgresses([ProgressFactory.getProgress()]);
           this.userService.createUser(user);
+          this.authservice.setLocalStorage(user);
         })
       }
       this.loading = false;
-      this.authservice.setLocalStorage(authState);
       this.router.navigateByUrl('/chooser')
 
     });
