@@ -57,4 +57,8 @@ export class UserService {
     let ectsFinished = this.getFinishedEcts(user);
     return user.plannedDegree.ectsNeeded - ectsFinished;
   }
+
+  getPlannedCourses(user: User) {
+    
+  }
 }

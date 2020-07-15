@@ -17,6 +17,7 @@ export class User {
   lastName: string;
   roles: ROLES[]
   address: Address;
+
   plannedDegree: Degree;
   progresses: Progress[];
 

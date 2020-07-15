@@ -6,8 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const modules = [
   MatCardModule,
@@ -16,7 +15,7 @@ const modules = [
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

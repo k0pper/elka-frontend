@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Programmieren 1",
+    "ects": 5,
+    "tags": [
+      "Algorithmen",
+      "Code",
+      "Abstrakt",
+      "Informatik",
+      "Software"
+    ],
+    "professor": " Udo Müller",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Schleifen",
+        "isDone": false
+      },
+      {
+        "name": "If-Bedingungen",
+        "isDone": false
+      }
+    ]
+  },
+  {
+    "name": "Einführung in die Wirtschaftsinformatik",
+    "ects": 5,
+    "tags": [
+      "Wirtschaft",
+      "Informatik",
+      "Wirtschaftsinformatik",
+      "Consulting",
+      "Software"
+    ],
+    "professor": "Rainer Neumann",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Die Geschichte des Computers",
+        "isDone": false
+      },
+      {
+        "name": "O(n)-Notation",
+        "isDone": false
+      }
+    ]
+  },
+  {
+    "name": "Software Engineering",
+    "ects": 5,
+    "tags": [
+      "Informatik",
+      "Wirtschaftsinformatik",
+      "Software",
+      "Engineering",
+      "Development"
+    ],
+    "professor": "Jürgen Zimmermann",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Grundlagen von GIT",
+        "isDone": false
+      },
+      {
+        "name": "DevOps",
+        "isDone": false
+      },
+      {
+        "name": "Moderne Programmier-Patterns",
+        "isDone": false
+      }
+    ]
+  },
+  {
+    "name": "Sozial- und Selbstkompetenzen",
+    "ects": 5,
+    "tags": [
+      "Sozial",
+      "Soft",
+      "Soft Skill",
+      "Führung",
+      "Management"
+    ],
+    "professor": "Franz Nees",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Bedürfnispyramide",
+        "isDone": false
+      },
+      {
+        "name": "Führungsqualitäten",
+        "isDone": false
+      }
+    ]
+  }
+]

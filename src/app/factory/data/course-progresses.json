@@ -1,0 +1,37 @@
+[
+  {
+    "course": {
+      "name": "Programmieren 1",
+      "ects": 5,
+      "tags": [
+        "Algorithmen",
+        "Code",
+        "Abstrakt",
+        "Informatik",
+        "Software"
+      ],
+      "professor": " Udo Müller",
+      "mandatoryContentBlocks": [
+        {
+          "name": "Schleifen",
+          "isDone": false
+        },
+        {
+          "name": "If-Bedingungen",
+          "isDone": false
+        }
+      ]
+    },
+    "contentBlocks": [
+      {
+        "name": "If-Bedingungen",
+        "isDone": false
+      },
+      {
+        "name": "Schleifen",
+        "isDone": true
+      }
+    ],
+    "isDone": false
+  }
+]

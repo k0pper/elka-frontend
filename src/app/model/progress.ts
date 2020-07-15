@@ -1,19 +1,15 @@
 import { Course } from './course';
+import { ScheduledSemester } from './scheduled.semester';
 
 export class Progress {
   refDegreeShortName: string;
-  semestersStudied: number;
   currentSemester: number;
   finishedCourses: Course[];
+  scheduledSemesters: ScheduledSemester[];
 
 
   setRefDegreeShortName(degreeShortName: string): Progress {
     this.refDegreeShortName = degreeShortName;
-    return this;
-  }
-
-  setSemestersStudied(semestersStudied: number): Progress {
-    this.semestersStudied = semestersStudied;
     return this;
   }
 
@@ -24,6 +20,11 @@ export class Progress {
 
   setFinishedCourses(finishedCourses: Course[]): Progress {
     this.finishedCourses = finishedCourses;
+    return this;
+  }
+
+  setScheduledSemesters(scheduledSemesters: ScheduledSemester[]): Progress {
+    this.scheduledSemesters = scheduledSemesters;
     return this;
   }
 

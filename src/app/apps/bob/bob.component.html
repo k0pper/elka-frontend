@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>ELKA</span>
+    <div class="home" [routerLink]="['/bob']">ELKA Study Builder</div>
     <span class="example-spacer"></span>
     <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
       <div class="user-info">
@@ -15,6 +15,7 @@
   <button mat-menu-item>Profil</button>
   <button mat-menu-item (click)="downloadJson()">Export</button>
   <button mat-menu-item [routerLink]="['/chooser']">App Wechseln</button>
+  <button style="color: red" *ngIf="isAdmin()" mat-menu-item [routerLink]="['admin']">Admin Lobby</button>
   <button mat-menu-item (click)="signOut('auth')">Abmelden</button>
 </mat-menu>
 

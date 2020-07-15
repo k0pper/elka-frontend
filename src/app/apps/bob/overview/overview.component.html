@@ -1,50 +1,68 @@
 <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill>
-    <mat-card fxFlex="35" fxFlexAlign="stretch">
-      <mat-card-title>Dein Studium</mat-card-title>
-      <div style="height: 15px;"></div>
-      <mat-card-content>
-          <div *ngIf="!loading" content fxLayout="column" fxLayoutGap="20px">
-            <div fxLayout=row fxLayoutAlign="start stretch">
-              <div fxFlex="50"><b>Geplanter Abschluss:</b></div>
-              <div fxFlex="50">{{user.plannedDegree.name}} ({{user.plannedDegree.shortName}})</div>
-            </div>
-            <div fxLayout=row fxLayoutAlign="start stretch">
-              <div fxFlex="50"><b>Semester:</b></div>
-              <div fxFlex="50"> {{getCurrentSemester()}} </div>
-            </div>
-            <div fxLayout=row fxLayoutAlign="start stretch">
-              <div fxFlex="50"><b>Abgeschlossene ECTS:</b></div>
-              <div fxFlex="50"> {{getFinishedEcts()}} </div>
-            </div>
-            <div fxLayout=row fxLayoutAlign="start stretch">
-              <div fxFlex="50"><b>Verbleibende ECTS:</b></div>
-              <div fxFlex="50"> {{getRemainingEcts()}} </div>
-            </div>
-            <div fxLayout=row fxLayoutAlign="start stretch">
-              <div fxFlex="50"><b>Geplante Kurse dieses Semester:</b></div>
-              <div fxFlex="50"> TODO </div>
-            </div>
-            <div fxLayout=row fxLayoutAlign="start stretch">
-              <div fxFlex="50"><b>Aktuelles Tempo:</b></div>
-              <div fxFlex="50"> ~ {{getTempo() | number:'1.2-2'}} ECTS / Semester</div>
-            </div>
-            <div fxLayout=row fxLayoutAlign="start stretch">
-              <div fxFlex="50"><b>ECTS Fortschritt</b></div>
-              <div fxFlex="50" fxFlexAlign="center">
-                <mat-progress-bar mode="determinate" [value]="getEctsProgress()"></mat-progress-bar>
-              </div>
-            </div>
-
-            <button mat-raised-button color="primary">Zur Kursbübersicht</button>
-            <button mat-raised-button color="primary">Abschluss ändern</button>
-
-            <div *ngIf="loading">
-              <mat-spinner></mat-spinner>
-            </div>
+  <mat-card fxFlex="35" fxFlexAlign="stretch">
+    <mat-card-title>Dein Studium</mat-card-title>
+    <div style="height: 15px;"></div>
+    <mat-card-content>
+      <div *ngIf="!loading" content fxLayout="column" fxLayoutGap="20px">
+        <div fxLayout=row fxLayoutAlign="start stretch">
+          <div fxFlex="50"><b>Geplanter Abschluss:</b></div>
+          <div fxFlex="50">{{user.plannedDegree.name}} ({{user.plannedDegree.shortName}})</div>
+        </div>
+        <div fxLayout=row fxLayoutAlign="start stretch">
+          <div fxFlex="50"><b>Semester:</b></div>
+          <div fxFlex="50"> {{getCurrentSemester()}} </div>
+        </div>
+        <div fxLayout=row fxLayoutAlign="start stretch">
+          <div fxFlex="50"><b>Abgeschlossene ECTS:</b></div>
+          <div fxFlex="50"> {{getFinishedEcts()}} </div>
+        </div>
+        <div fxLayout=row fxLayoutAlign="start stretch">
+          <div fxFlex="50"><b>Verbleibende ECTS:</b></div>
+          <div fxFlex="50"> {{getRemainingEcts()}} </div>
+        </div>
+        <div fxLayout=row fxLayoutAlign="start stretch">
+          <div fxFlex="50"><b>Geplante Kurse dieses Semester:</b></div>
+          <div fxFlex="50"> {{getNumberOfPlannedCourses()}} </div>
+        </div>
+        <div fxLayout=row fxLayoutAlign="start stretch">
+          <div fxFlex="50"><b>Aktuelles Tempo:</b></div>
+          <div fxFlex="50"> ~ {{getTempo() | number:'1.2-2'}} ECTS / Semester</div>
+        </div>
+        <div fxLayout=row fxLayoutAlign="start stretch">
+          <div fxFlex="50"><b>ECTS Fortschritt</b></div>
+          <div fxFlex="50" fxFlexAlign="center">
+            <mat-progress-bar mode="determinate" [value]="getEctsProgress()"></mat-progress-bar>
           </div>
-      </mat-card-content>
-    </mat-card>
-    <mat-card fxFlex="65">
-      <mat-card-title>Kurse nach Semestern</mat-card-title>
-    </mat-card>
+        </div>
+
+        <button mat-raised-button color="primary" [routerLink]="['/bob/courses']" >Zur Kursübersicht</button>
+        <button mat-raised-button color="primary">Abschluss ändern</button>
+
+        <div *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card fxFlex="65">
+    <mat-card-title>Kurse nach Semestern</mat-card-title>
+    <mat-card-content>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let semester of progress.scheduledSemesters">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Semester {{semester.index}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{semester.scheduledCourses.length}} geplante Kurs(e)
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+            <div class="course" *ngFor="let courseProgress of semester.scheduledCourses">
+                {{courseProgress.course.name}} ({{courseProgress.course.ects}} ECTS)
+            </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+  </mat-card>
 </div>

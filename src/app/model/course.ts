@@ -1,8 +1,11 @@
+import { ContentBlock } from './contentblock';
+
 export class Course {
   name: string;
   ects: number;
   tags: string[];
   professor: string;
+  mandatoryContentBlocks: ContentBlock[];
 
   public setName(name: string): Course {
     this.name = name;

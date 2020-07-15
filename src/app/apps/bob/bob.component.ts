@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/model/user';
+import { User, ROLES } from 'src/app/model/user';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/users.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -26,6 +26,10 @@ export class BobComponent implements OnInit {
 
   routeTo(route) {
 
+  }
+
+  isAdmin() {
+    return this.user.roles.includes(ROLES.ADMIN);
   }
 
   downloadJson(){

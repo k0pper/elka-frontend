@@ -1,0 +1,29 @@
+.example-full-width{
+  width: 100%;
+}
+
+.search {}
+
+.semesters {
+  position: relative;
+  z-index: 2;
+}
+
+.chip-container {
+  * {
+    display: inline-block;
+  }
+
+  .tag {
+    border-radius: 30px;
+    background: darkred;
+    color: white;
+    padding: 5px 8px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

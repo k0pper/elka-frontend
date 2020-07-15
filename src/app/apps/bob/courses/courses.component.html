@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill class="search">
+  <mat-card fxFlex="35" fxFlexAlign="stretch">
+    <div style="height: 15px;"></div>
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Kurse durchsuchen</mat-label>
+        <input matInput placeholder="Kurs, Professor, ECTS etc. eingeben ..."
+        [formControl]="searchFormControl"
+        (keydown.enter)="addTag()">
+      </mat-form-field>
+
+      <div class="chip-container">
+        <div class="tag" *ngFor="let tag of tags">{{tag}}</div>
+      </div>
+
+      <mat-spinner diameter="25" *ngIf="!courses"></mat-spinner>
+
+      <div cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        >
+        <course [course]="course" *ngFor="let course of courses"></course>
+        <!-- <div cdkDrag *ngFor="let course of courses" style="width: 100%; background: radial-gradient(red, blue); height: 200px;"></div> -->
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-card fxFlex="65" class="semesters">
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill>
+        <div *ngFor="let semester of scheduledSemesters" fxFlex="25" fxFlexAlign="stretch">
+          <h2>Semester {{semester.index}}</h2>
+          <div *ngFor="let courseProgress of semester.scheduledCourses">
+            <course-progress [courseProgress]="courseProgress"></course-progress>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

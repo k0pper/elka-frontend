@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
             .setEmail(authState.user.email)
             .setFirstName("Max")
             .setLastName("Mustermann")
-            .setRoles([ROLES.STUDENT, ROLES.ADMINISTRATION])
+            .setRoles([ROLES.STUDENT, ROLES.ADMINISTRATION, ROLES.ADMIN])
             .setAddress(address)
             .setPlannedDegree(plannedDegree)
             .setProgresses([ProgressFactory.getProgress()]);

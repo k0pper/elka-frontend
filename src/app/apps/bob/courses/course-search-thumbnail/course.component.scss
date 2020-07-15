@@ -1,0 +1,22 @@
+.course {
+  z-index: 3;
+  max-width: 100%;
+  position: relative;
+  padding: 15px 10px;
+  background: rgb(248, 248, 248);
+  margin-bottom: 2px;
+  display: block;
+  cursor: grab;
+  overflow: hidden;
+  max-height: 50px;
+
+  &:hover {
+    z-index: 4;
+  }
+
+
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}

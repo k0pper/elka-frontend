@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BobComponent } from './bob.component';
 import { OverviewComponent } from './overview/overview.component';
+import { AdminComponent } from './admin/admin.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,16 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'overview',
+        pathMatch: 'full'
+      },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'courses',
+        component: CoursesComponent,
         pathMatch: 'full'
       },
       {

@@ -10,7 +10,7 @@ export class DegreeFactory {
        .setDescription("Mikrobiologie ist fresh?")
        .setShortName("MBL")
        .setEctsNeeded(300)
-       .setValidCourses(CourseFactory.getCourse());
+       .setValidCourses(CourseFactory.getRandomCourse());
     console.log("DegreeFactory created Degree:");
     console.log(degree);
     return degree;
