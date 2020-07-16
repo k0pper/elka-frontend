@@ -1,7 +1,9 @@
-  <div [ngClass]="{'course-progress': true, 'course-done': courseDone()}" cdkDrag>
+  <div [ngClass]="{'course-progress': true, 'course-done': courseDone(), 'courseinvalid': !courseValid()}" cdkDrag>
     <div style="padding: 15px 10px;">
       <div class="course-name">{{course.name}}</div>
     </div>
     <mat-icon *ngIf="courseDone()" style="position: absolute; top: 0; right: 0; color: green;">check</mat-icon>
+    <mat-icon *ngIf="!courseValid()" [matTooltip]="invalidMessage()"
+    matTooltipClass="tooltip-red" class="invalid-info-icon">info</mat-icon>
     <mat-progress-bar mode="determinate" [value]="getDoneContentBlocksPercentage()"></mat-progress-bar>
   </div>

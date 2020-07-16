@@ -40,12 +40,7 @@ export class OverviewComponent implements OnInit {
   }
 
   getTempo(): number {
-    let finishedEcts = this.userService.getFinishedEcts(this.user)
-    let currentProgress = this.userService.getCurrentProgress(this.user);
-    if (currentProgress.currentSemester == 1) {
-      return finishedEcts;
-    }
-    return finishedEcts / (currentProgress.currentSemester - 1);
+    return this.userService.getTempo(this.user);
   }
 
   getEctsProgress(): number {
@@ -53,13 +48,7 @@ export class OverviewComponent implements OnInit {
   }
 
   getNumberOfPlannedCourses(): number {
-    let numOfPlannedCourses = 0;
-    for (let semester of this.progress.scheduledSemesters) {
-      for (let c of semester.scheduledCourses) {
-        numOfPlannedCourses += 1;
-      }
-    }
-    return numOfPlannedCourses;
+    return this.userService.getNumberOfPlannedCourses(this.user);
   }
 
 }

@@ -18,12 +18,10 @@
         "professor": " Udo Müller",
         "mandatoryContentBlocks": [
           {
-            "name": "Schleifen",
-            "isDone": true
+            "name": "Schleifen"
           },
           {
-            "name": "If-Bedingungen",
-            "isDone": true
+            "name": "If-Bedingungen"
           }
         ]
       },
@@ -40,12 +38,10 @@
         "professor": "Rainer Neumann",
         "mandatoryContentBlocks": [
           {
-            "name": "Die Geschichte des Computers",
-            "isDone": true
+            "name": "Die Geschichte des Computers"
           },
           {
-            "name": "O(n)-Notation",
-            "isDone": false
+            "name": "O(n)-Notation"
           }
         ]
       }
@@ -70,16 +66,13 @@
         "professor": "Jürgen Zimmermann",
         "mandatoryContentBlocks": [
           {
-            "name": "Grundlagen von GIT",
-            "isDone": false
+            "name": "Grundlagen von GIT"
           },
           {
-            "name": "DevOps",
-            "isDone": false
+            "name": "DevOps"
           },
           {
-            "name": "Moderne Programmier-Patterns",
-            "isDone": false
+            "name": "Moderne Programmier-Patterns"
           }
         ]
       }
@@ -104,12 +97,10 @@
         "professor": "Franz Nees",
         "mandatoryContentBlocks": [
           {
-            "name": "Bedürfnispyramide",
-            "isDone": false
+            "name": "Bedürfnispyramide"
           },
           {
-            "name": "Führungsqualitäten",
-            "isDone": false
+            "name": "Führungsqualitäten"
           }
         ]
       }
@@ -133,12 +124,10 @@
         "professor": "Sonja Blumenstrauß",
         "mandatoryContentBlocks": [
           {
-            "name": "Grundlegende Kryptographie",
-            "isDone": false
+            "name": "Grundlegende Kryptographie"
           },
           {
-            "name": "Tatortvisualisierung",
-            "isDone": false
+            "name": "Tatortvisualisierung"
           }
         ]
       }

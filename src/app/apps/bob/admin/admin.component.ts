@@ -34,4 +34,8 @@ export class AdminComponent implements OnInit {
   generateDegrees() {
     this.generator.generateDegrees();
   }
+
+  generateContentBlocks() {
+    this.generator.generateContentBlocks();
+  }
 }

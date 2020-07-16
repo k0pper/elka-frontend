@@ -48,7 +48,7 @@
         (cdkDropListDropped)="dropScheduled($event)">
           <h2>Semester {{progress.currentSemester}}</h2>
           <div *ngFor="let c of courseList1">
-            <scheduled-course [course]="c"></scheduled-course>
+            <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
         </div>
 
@@ -57,7 +57,7 @@
         (cdkDropListDropped)="dropScheduled($event)">
           <h2>Semester {{progress.currentSemester + 1}}</h2>
           <div *ngFor="let c of courseList2">
-            <scheduled-course [course]="c"></scheduled-course>
+            <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
         </div>
 
@@ -66,7 +66,7 @@
         (cdkDropListDropped)="dropScheduled($event)">
           <h2>Semester {{progress.currentSemester + 2}}</h2>
           <div *ngFor="let c of courseList3">
-            <scheduled-course [course]="c"></scheduled-course>
+            <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
         </div>
 
@@ -75,7 +75,7 @@
         (cdkDropListDropped)="dropScheduled($event)">
           <h2>Semester {{progress.currentSemester + 3}}</h2>
           <div *ngFor="let c of courseList4">
-            <scheduled-course [course]="c"></scheduled-course>
+            <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
         </div>
 

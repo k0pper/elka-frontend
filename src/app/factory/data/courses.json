@@ -12,12 +12,10 @@
     "professor": " Udo Müller",
     "mandatoryContentBlocks": [
       {
-        "name": "Schleifen",
-        "isDone": false
+        "name": "Schleifen"
       },
       {
-        "name": "If-Bedingungen",
-        "isDone": false
+        "name": "If-Bedingungen"
       }
     ]
   },
@@ -34,12 +32,10 @@
     "professor": "Rainer Neumann",
     "mandatoryContentBlocks": [
       {
-        "name": "Die Geschichte des Computers",
-        "isDone": true
+        "name": "Die Geschichte des Computers"
       },
       {
-        "name": "O(n)-Notation",
-        "isDone": false
+        "name": "O(n)-Notation"
       }
     ]
   },
@@ -56,16 +52,13 @@
     "professor": "Jürgen Zimmermann",
     "mandatoryContentBlocks": [
       {
-        "name": "Grundlagen von GIT",
-        "isDone": true
+        "name": "Grundlagen von GIT"
       },
       {
-        "name": "DevOps",
-        "isDone": true
+        "name": "DevOps"
       },
       {
-        "name": "Moderne Programmier-Patterns",
-        "isDone": false
+        "name": "Moderne Programmier-Patterns"
       }
     ]
   },
@@ -82,12 +75,10 @@
     "professor": "Franz Nees",
     "mandatoryContentBlocks": [
       {
-        "name": "Bedürfnispyramide",
-        "isDone": false
+        "name": "Bedürfnispyramide"
       },
       {
-        "name": "Führungsqualitäten",
-        "isDone": false
+        "name": "Führungsqualitäten"
       }
     ]
   },
@@ -103,16 +94,13 @@
     "professor": "Sonja Blumenstrauß",
     "mandatoryContentBlocks": [
       {
-        "name": "Mandalas malen",
-        "isDone": false
+        "name": "Mandalas malen"
       },
       {
-        "name": "Kinder ruhig stellen",
-        "isDone": false
+        "name": "Kinder ruhig stellen"
       },
       {
-        "name": "Der stille Fuchs",
-        "isDone": false
+        "name": "Der stille Fuchs"
       }
     ]
   },
@@ -128,12 +116,10 @@
     "professor": "Sonja Blumenstrauß",
     "mandatoryContentBlocks": [
       {
-        "name": "Grundlegende Kryptographie",
-        "isDone": false
+        "name": "Grundlegende Kryptographie"
       },
       {
-        "name": "Tatortvisualisierung",
-        "isDone": false
+        "name": "Tatortvisualisierung"
       }
     ]
   }

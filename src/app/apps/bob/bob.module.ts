@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScheduledCourseComponent } from './courses/course-progress-thumbnail/scheduled-course-thumbnail.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatFormFieldModule,
     MatSnackBarModule,
     MatCheckboxModule,
-
+    MatTooltipModule,
     FlexLayoutModule,
   ],
   exports: [],

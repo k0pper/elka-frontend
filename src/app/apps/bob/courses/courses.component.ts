@@ -151,10 +151,10 @@ export class CoursesComponent implements OnInit {
   }
 
   filter() {
-    // let filtered1 = this.filterDoubles('', this.rawCourses);
-    // let filtered2 = this.filterByName('', filtered1);
-    // let filtered3 = this.filterByRelevant('', filtered2);
-    // this.courses = filtered3;
+    let filtered1 = this.filterDoubles('', this.rawCourses);
+    let filtered2 = this.filterByName('', filtered1);
+    let filtered3 = this.filterByRelevant('', filtered2);
+    this.courses = filtered3;
   }
 
 

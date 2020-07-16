@@ -63,16 +63,39 @@ export class UserService {
   }
 
   getFinishedEcts(user: User) {
-    let sum = 0;
-    for (let course of this.getCurrentProgress(user).finishedCourses) {
-      sum += course.ects;
+    let validCourses = user.plannedDegree.validCourses;
+    let finishedContentBlocks = user.finishedContentBlocks;
+
+    let finishedEcts = 0;
+    for (let validCourse of validCourses) {
+      let intersection = validCourse.mandatoryContentBlocks.map(cb => cb.name).filter(cbName => finishedContentBlocks.map(fCb => fCb.name).includes(cbName));
+      if (intersection.length == validCourse.mandatoryContentBlocks.length) finishedEcts += validCourse.ects;
     }
-    return sum;
+    return finishedEcts;
   }
 
   getRemainingEcts(user: User) {
     let ectsFinished = this.getFinishedEcts(user);
     return user.plannedDegree.ectsNeeded - ectsFinished;
+  }
+
+  getTempo(user: User) {
+    let finishedEcts = this.getFinishedEcts(user);
+    let currentProgress = this.getCurrentProgress(user);
+    if (currentProgress.currentSemester == 1) {
+      return finishedEcts;
+    }
+    return finishedEcts / (currentProgress.currentSemester - 1);
+  }
+
+  getNumberOfPlannedCourses(user: User) {
+    let numOfPlannedCourses = 0;
+    for (let semester of this.getCurrentProgress(user).scheduledSemesters) {
+      for (let c of semester.scheduledCourses) {
+        numOfPlannedCourses += 1;
+      }
+    }
+    return numOfPlannedCourses;
   }
 
   getPlannedCourses(user: User) {

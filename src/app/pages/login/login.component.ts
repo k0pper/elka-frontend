@@ -12,6 +12,8 @@ import { Degree } from 'src/app/model/degree';
 import { DegreeFactory } from 'src/app/factory/degree.factory';
 import { AddressFactory } from 'src/app/factory/address.factory';
 import { ProgressFactory } from 'src/app/factory/progress.factory';
+import { ContentBlockFactory } from 'src/app/factory/contentblock.factory';
+import { ContentBlock } from 'src/app/model/contentblock';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -82,7 +84,8 @@ export class LoginComponent implements OnInit {
           .setRoles([ROLES.STUDENT, ROLES.ADMINISTRATION, ROLES.ADMIN])
           .setAddress(AddressFactory.getAddress())
           .setPlannedDegree(DegreeFactory.getRandomDegree("IWI"))
-          .setProgresses([ProgressFactory.getProgress()]);
+          .setProgresses([ProgressFactory.getProgress()])
+          .setFinishedContentBlocks(ContentBlockFactory.getNRandomContentBlocks(6));
         this.userService.createUpdateUser(user);
         this.authservice.setLocalStorage(user);
 
