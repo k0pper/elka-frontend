@@ -9,10 +9,10 @@ export class ProgressFactory {
 
   static getProgress(): Progress {
     let progress: Progress = new Progress()
-      .setRefDegreeShortName("ITP")
+      .setRefDegreeShortName("IWI")
       .setCurrentSemester(1)
       .setFinishedCourses([])
-      .setScheduledSemesters([ScheduledSemesterFactory.getScheduledSemester()]);
+      .setScheduledSemesters(ScheduledSemesterFactory.getScheduledSemesters());
     return progress;
   }
 }

@@ -1,10 +1,10 @@
-import { CourseProgress } from './course.progress';
+import { Course } from './course';
 
 export class ScheduledSemester {
   index: number;
   fromDate: Date;
   toDate: Date;
-  scheduledCourses: CourseProgress[];
+  scheduledCourses: Course[];
 
   setIndex(index: number): ScheduledSemester {
     this.index = index;
@@ -18,7 +18,7 @@ export class ScheduledSemester {
     this.toDate = toDate;
     return this;
   }
-  setScheduledCourseProgresses(scheduledCourses: CourseProgress[]): ScheduledSemester {
+  setScheduledCourses(scheduledCourses: Course[]): ScheduledSemester {
     this.scheduledCourses = scheduledCourses;
     return this;
   }

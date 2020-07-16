@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   ]);
 
   ngOnInit(): void {
-    this.degreeService.createDegree(DegreeFactory.getDegree())
+
   }
 
   signIn() {
@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
     this.authservice.signIn(username, password)
       .then((authState: auth.UserCredential) => {
         this.handleSuccessfulLogin(authState);
+        this.router.navigateByUrl('/chooser');
       }).catch(error => {
         this.handleFailedLogin(error);
       })
@@ -74,25 +75,19 @@ export class LoginComponent implements OnInit {
         this.authservice.setLocalStorage(user);
       } else {
         console.log("user doesnt exist. creating...")
-        let address = AddressFactory.getAddress();
-        let plannedDegree: Degree;
-        this.degreeService.getDegreeByShortName('ITP').valueChanges().subscribe((degree: Degree) => {
-          plannedDegree = degree;
-          let user = new User(authState.user.uid)
-            .setEmail(authState.user.email)
-            .setFirstName("Max")
-            .setLastName("Mustermann")
-            .setRoles([ROLES.STUDENT, ROLES.ADMINISTRATION, ROLES.ADMIN])
-            .setAddress(address)
-            .setPlannedDegree(plannedDegree)
-            .setProgresses([ProgressFactory.getProgress()]);
-          this.userService.createUser(user);
-          this.authservice.setLocalStorage(user);
-        })
+        let user = new User(authState.user.uid)
+          .setEmail(authState.user.email)
+          .setFirstName("Max")
+          .setLastName("Mustermann")
+          .setRoles([ROLES.STUDENT, ROLES.ADMINISTRATION, ROLES.ADMIN])
+          .setAddress(AddressFactory.getAddress())
+          .setPlannedDegree(DegreeFactory.getRandomDegree("IWI"))
+          .setProgresses([ProgressFactory.getProgress()]);
+        this.userService.createUpdateUser(user);
+        this.authservice.setLocalStorage(user);
+
       }
       this.loading = false;
-      this.router.navigateByUrl('/chooser')
-
     });
   }
 

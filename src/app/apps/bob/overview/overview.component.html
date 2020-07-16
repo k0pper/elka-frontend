@@ -49,7 +49,7 @@
     <mat-card-title>Kurse nach Semestern</mat-card-title>
     <mat-card-content>
       <mat-accordion>
-        <mat-expansion-panel hideToggle *ngFor="let semester of progress.scheduledSemesters">
+        <mat-expansion-panel hideToggle *ngFor="let semester of progress?.scheduledSemesters">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Semester {{semester.index}}
@@ -58,8 +58,8 @@
               {{semester.scheduledCourses.length}} geplante Kurs(e)
             </mat-panel-description>
           </mat-expansion-panel-header>
-            <div class="course" *ngFor="let courseProgress of semester.scheduledCourses">
-                {{courseProgress.course.name}} ({{courseProgress.course.ects}} ECTS)
+            <div class="course" *ngFor="let course of semester.scheduledCourses">
+                {{course.name}} ({{course.ects}} ECTS)
             </div>
         </mat-expansion-panel>
       </mat-accordion>

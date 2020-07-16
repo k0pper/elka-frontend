@@ -1,0 +1,180 @@
+[
+  {
+    "name": "Wirtschaftinformatik",
+    "ectsNeeded": 210,
+    "shortName": "IWI",
+    "description": "Eine Mischung aus IT und Informatik",
+    "validCourses": [
+      {
+        "name": "Programmieren 1",
+        "ects": 5,
+        "tags": [
+          "Algorithmen",
+          "Code",
+          "Abstrakt",
+          "Informatik",
+          "Software"
+        ],
+        "professor": " Udo Müller",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Schleifen",
+            "isDone": false
+          },
+          {
+            "name": "If-Bedingungen",
+            "isDone": false
+          }
+        ]
+      },
+      {
+        "name": "Einführung in die Wirtschaftsinformatik",
+        "ects": 5,
+        "tags": [
+          "Wirtschaft",
+          "Informatik",
+          "Wirtschaftsinformatik",
+          "Consulting",
+          "Software"
+        ],
+        "professor": "Rainer Neumann",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Die Geschichte des Computers",
+            "isDone": true
+          },
+          {
+            "name": "O(n)-Notation",
+            "isDone": false
+          }
+        ]
+      },
+      {
+        "name": "Software Engineering",
+        "ects": 5,
+        "tags": [
+          "Informatik",
+          "Wirtschaftsinformatik",
+          "Software",
+          "Engineering",
+          "Development"
+        ],
+        "professor": "Jürgen Zimmermann",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Grundlagen von GIT",
+            "isDone": true
+          },
+          {
+            "name": "DevOps",
+            "isDone": true
+          },
+          {
+            "name": "Moderne Programmier-Patterns",
+            "isDone": false
+          }
+        ]
+      },
+      {
+        "name": "Sozial- und Selbstkompetenzen",
+        "ects": 5,
+        "tags": [
+          "Sozial",
+          "Soft",
+          "Soft Skill",
+          "Führung",
+          "Management"
+        ],
+        "professor": "Franz Nees",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Bedürfnispyramide",
+            "isDone": false
+          },
+          {
+            "name": "Führungsqualitäten",
+            "isDone": false
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "name": "Informatik",
+    "ectsNeeded": 210,
+    "shortName": "I",
+    "description": "Pure Informatik, nichts weiter",
+    "validCourses": [
+      {
+        "name": "Programmieren 1",
+        "ects": 5,
+        "tags": [
+          "Algorithmen",
+          "Code",
+          "Abstrakt",
+          "Informatik",
+          "Software"
+        ],
+        "professor": " Udo Müller",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Schleifen",
+            "isDone": false
+          },
+          {
+            "name": "If-Bedingungen",
+            "isDone": false
+          }
+        ]
+      },
+      {
+        "name": "Software Engineering",
+        "ects": 5,
+        "tags": [
+          "Informatik",
+          "Wirtschaftsinformatik",
+          "Software",
+          "Engineering",
+          "Development"
+        ],
+        "professor": "Jürgen Zimmermann",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Grundlagen von GIT",
+            "isDone": true
+          },
+          {
+            "name": "DevOps",
+            "isDone": true
+          },
+          {
+            "name": "Moderne Programmier-Patterns",
+            "isDone": false
+          }
+        ]
+      },
+      {
+        "name": "Computerforensik",
+        "ects": 5,
+        "tags": [
+          "IT",
+          "Informatik",
+          "Kriminal",
+          "Sicherheit"
+        ],
+        "professor": "Sonja Blumenstrauß",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Grundlegende Kryptographie",
+            "isDone": false
+          },
+          {
+            "name": "Tatortvisualisierung",
+            "isDone": false
+          }
+        ]
+      }
+    ]
+  }
+]

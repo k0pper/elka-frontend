@@ -17,13 +17,30 @@ export class UserService {
     this.usersCollection = db.collection(this.usersPath);
   }
 
-  createUser(user: any): void {
-    console.log("creating user");
+  createUpdateUser(user: User): void {
+    console.log("creating/updating user");
     console.log(user);
     this.userDocument = this.usersCollection.doc(user.id);
     this.userDocument.set(
       JSON.parse(JSON.stringify(user))
     )
+  }
+
+  updateProgressAndSave(user: User, newProgress: Progress) {
+    for (let p of user.progresses) {
+      if (p.refDegreeShortName == newProgress.refDegreeShortName) {
+        p = newProgress;
+        this.userDocument = this.usersCollection.doc(user.id);
+        this.userDocument.set(JSON.parse(JSON.stringify(user)))
+        localStorage.setItem("user", JSON.stringify(user));
+        return;
+      }
+      // No progress found, add new one
+      user.progresses.push(newProgress);
+      this.userDocument = this.usersCollection.doc(user.id);
+      this.userDocument.set(JSON.parse(JSON.stringify(user)));
+      localStorage.setItem("user", JSON.stringify(user));
+    }
   }
 
   getUsersList(): AngularFirestoreCollection<User> {
@@ -59,6 +76,6 @@ export class UserService {
   }
 
   getPlannedCourses(user: User) {
-    
+
   }
 }

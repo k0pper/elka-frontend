@@ -1,0 +1,7 @@
+  <div [ngClass]="{'course-progress': true, 'course-done': courseDone()}" cdkDrag>
+    <div style="padding: 15px 10px;">
+      <div class="course-name">{{course.name}}</div>
+    </div>
+    <mat-icon *ngIf="courseDone()" style="position: absolute; top: 0; right: 0; color: green;">check</mat-icon>
+    <mat-progress-bar mode="determinate" [value]="getDoneContentBlocksPercentage()"></mat-progress-bar>
+  </div>

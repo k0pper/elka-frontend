@@ -26,4 +26,12 @@ export class AdminComponent implements OnInit {
   deleteCurrentUser() {
     this.generator.deleteUser(this.user);
   }
+
+  generateScheduledSemesters() {
+    this.generator.generateScheduledSemesters();
+  }
+
+  generateDegrees() {
+    this.generator.generateDegrees();
+  }
 }

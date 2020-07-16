@@ -1,16 +1,11 @@
 import { CourseFactory } from './course.factory';
 import { ScheduledSemester } from '../model/scheduled.semester';
-import { CourseProgressFactory } from './course.progress.factory';
+import * as scheduledSemesters from './data/scheduled-semesters.json';
 
 export class ScheduledSemesterFactory {
   constructor() {}
 
-  static getScheduledSemester(): ScheduledSemester {
-    let scheduledSemester = new ScheduledSemester()
-      .setIndex(1)
-      .setFromDate(new Date(2020, 9, 1))
-      .setToDate(new Date(2021, 2, 28))
-      .setScheduledCourseProgresses([CourseProgressFactory.getCourseProgress()]);
-    return scheduledSemester;
+  static getScheduledSemesters(): ScheduledSemester[] {
+    return (scheduledSemesters as any).default as ScheduledSemester[];
   }
 }

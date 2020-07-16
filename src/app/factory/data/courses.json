@@ -35,7 +35,7 @@
     "mandatoryContentBlocks": [
       {
         "name": "Die Geschichte des Computers",
-        "isDone": false
+        "isDone": true
       },
       {
         "name": "O(n)-Notation",
@@ -57,11 +57,11 @@
     "mandatoryContentBlocks": [
       {
         "name": "Grundlagen von GIT",
-        "isDone": false
+        "isDone": true
       },
       {
         "name": "DevOps",
-        "isDone": false
+        "isDone": true
       },
       {
         "name": "Moderne Programmier-Patterns",
@@ -87,6 +87,52 @@
       },
       {
         "name": "Führungsqualitäten",
+        "isDone": false
+      }
+    ]
+  },
+  {
+    "name": "Sozialpädagogik",
+    "ects": 5,
+    "tags": [
+      "Sozial",
+      "Pädagogik",
+      "Lehramt",
+      "Schule"
+    ],
+    "professor": "Sonja Blumenstrauß",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Mandalas malen",
+        "isDone": false
+      },
+      {
+        "name": "Kinder ruhig stellen",
+        "isDone": false
+      },
+      {
+        "name": "Der stille Fuchs",
+        "isDone": false
+      }
+    ]
+  },
+  {
+    "name": "Computerforensik",
+    "ects": 5,
+    "tags": [
+      "IT",
+      "Informatik",
+      "Kriminal",
+      "Sicherheit"
+    ],
+    "professor": "Sonja Blumenstrauß",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Grundlegende Kryptographie",
+        "isDone": false
+      },
+      {
+        "name": "Tatortvisualisierung",
         "isDone": false
       }
     ]

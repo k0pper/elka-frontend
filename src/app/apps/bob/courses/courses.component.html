@@ -2,25 +2,37 @@
   <mat-card fxFlex="35" fxFlexAlign="stretch">
     <div style="height: 15px;"></div>
     <mat-card-content>
+
       <mat-form-field class="example-full-width">
         <mat-icon matPrefix>search</mat-icon>
         <mat-label>Kurse durchsuchen</mat-label>
-        <input matInput placeholder="Kurs, Professor, ECTS etc. eingeben ..."
+        <input matInput placeholder="Kurs oder Stichwörter eingeben"
         [formControl]="searchFormControl"
-        (keydown.enter)="addTag()">
+        (keydown.enter)="addTag();"
+        (keyup)="filter()">
       </mat-form-field>
 
+
       <div class="chip-container">
-        <div class="tag" *ngFor="let tag of tags">{{tag}}</div>
+        <div (click)="removeTag(tag)" class="tag" *ngFor="let tag of tags">{{tag}}</div>
+      </div>
+
+      <div class="course-checkbox">
+        <mat-checkbox (change)="filter()" [(ngModel)]="onlyShowRelevant">
+          Nur Kurse für geplanten Abschluss anzeigen
+        </mat-checkbox>
       </div>
 
       <mat-spinner diameter="25" *ngIf="!courses"></mat-spinner>
 
-      <div cdkDropList
-        (cdkDropListDropped)="drop($event)"
-        >
+      <div *ngIf="courses?.length == 0">Keine Kurse mehr übrig ...</div>
+
+      <div id="courseCatalog" cdkDropList #courseCatalog="cdkDropList"
+      [cdkDropListData]="courses"
+      [cdkDropListConnectedTo]="[semester1List,semester2List,semester3List,semester4List]"
+      (cdkDropListDropped)="removeSchedule($event)"
+      cdkDropListSortingDisabled>
         <course [course]="course" *ngFor="let course of courses"></course>
-        <!-- <div cdkDrag *ngFor="let course of courses" style="width: 100%; background: radial-gradient(red, blue); height: 200px;"></div> -->
       </div>
 
     </mat-card-content>
@@ -30,13 +42,51 @@
   <mat-card fxFlex="65" class="semesters">
     <mat-card-content>
       <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill>
-        <div *ngFor="let semester of scheduledSemesters" fxFlex="25" fxFlexAlign="stretch">
-          <h2>Semester {{semester.index}}</h2>
-          <div *ngFor="let courseProgress of semester.scheduledCourses">
-            <course-progress [courseProgress]="courseProgress"></course-progress>
+
+        <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester1List="cdkDropList" [cdkDropListData]="courseList1"
+        [cdkDropListConnectedTo]="[semester2List,semester3List,semester4List,courseCatalog]"
+        (cdkDropListDropped)="dropScheduled($event)">
+          <h2>Semester {{progress.currentSemester}}</h2>
+          <div *ngFor="let c of courseList1">
+            <scheduled-course [course]="c"></scheduled-course>
           </div>
         </div>
+
+        <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester2List="cdkDropList" [cdkDropListData]="courseList2"
+        [cdkDropListConnectedTo]="[semester1List,semester3List,semester4List,courseCatalog]"
+        (cdkDropListDropped)="dropScheduled($event)">
+          <h2>Semester {{progress.currentSemester + 1}}</h2>
+          <div *ngFor="let c of courseList2">
+            <scheduled-course [course]="c"></scheduled-course>
+          </div>
+        </div>
+
+        <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester3List="cdkDropList" [cdkDropListData]="courseList3"
+        [cdkDropListConnectedTo]="[semester1List,semester2List,semester4List,courseCatalog]"
+        (cdkDropListDropped)="dropScheduled($event)">
+          <h2>Semester {{progress.currentSemester + 2}}</h2>
+          <div *ngFor="let c of courseList3">
+            <scheduled-course [course]="c"></scheduled-course>
+          </div>
+        </div>
+
+        <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester4List="cdkDropList" [cdkDropListData]="courseList4"
+        [cdkDropListConnectedTo]="[semester1List,semester2List,semester3List,courseCatalog]"
+        (cdkDropListDropped)="dropScheduled($event)">
+          <h2>Semester {{progress.currentSemester + 3}}</h2>
+          <div *ngFor="let c of courseList4">
+            <scheduled-course [course]="c"></scheduled-course>
+          </div>
+        </div>
+
       </div>
+
+      <h1 *ngIf="saving">saving</h1>
+      <button (click)="saveSchedule()" [disabled]="!dirty || saving"
+      mat-raised-button color="primary"
+      style="position: absolute; bottom: 125px; right: 50px;">
+      <mat-icon>save</mat-icon> Speichern</button>
+
     </mat-card-content>
   </mat-card>
 </div>

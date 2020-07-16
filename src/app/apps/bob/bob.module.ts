@@ -24,15 +24,18 @@ import { CourseComponent } from './courses/course-search-thumbnail/course.compon
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CourseProgressComponent } from './courses/course-progress-thumbnail/course-progress-thumbnail.component';
+import { ScheduledCourseComponent } from './courses/course-progress-thumbnail/scheduled-course-thumbnail.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    BobRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+
+    BobRoutingModule,
 
     MatToolbarModule,
     MatIconModule,
@@ -46,10 +49,19 @@ import { CourseProgressComponent } from './courses/course-progress-thumbnail/cou
     MatInputModule,
     DragDropModule,
     MatFormFieldModule,
+    MatSnackBarModule,
+    MatCheckboxModule,
 
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   exports: [],
-  declarations: [BobComponent, OverviewComponent, CoursesComponent, CourseComponent, CourseProgressComponent, AdminComponent,],
+  declarations: [
+    BobComponent,
+    OverviewComponent,
+    CoursesComponent,
+    ScheduledCourseComponent,
+    CourseComponent,
+    AdminComponent
+  ],
 })
 export class BobModule { }
