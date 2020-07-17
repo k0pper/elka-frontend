@@ -5,6 +5,8 @@ import { BobComponent } from './bob.component';
 import { OverviewComponent } from './overview/overview.component';
 import { AdminComponent } from './admin/admin.component';
 import { CoursesComponent } from './courses/courses.component';
+import { DegreesComponent } from './degrees/degrees.component';
+import { DegreeDetailsComponent } from './degrees/degree-details/degree-details.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,17 @@ const routes: Routes = [
         path: 'courses',
         component: CoursesComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'degrees',
+        component: DegreesComponent,
+        children: [
+          {
+            path: "details/:shortName",
+            component: DegreeDetailsComponent,
+            pathMatch: 'full'
+         }
+        ]
       },
       {
         path: '**',

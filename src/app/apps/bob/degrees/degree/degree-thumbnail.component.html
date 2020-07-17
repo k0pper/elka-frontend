@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill class="degree">
+  <div fxFlex="10" fxFlexAlign="stretch" class="icon-container"> <mat-icon>school</mat-icon> </div>
+  <div fxFlex="90" fxFlexAlign="stretch">
+    <div fxLayout="column" class="degree-text">
+      <div fxFlex="50" class="degree-name">
+        <div>{{degree.name}}</div>
+      </div>
+      <div fxFlex="50" class="degree-info">
+        <div *ngIf="isCurrentDegree()" style="color: rgb(0, 185, 31);">Aktuelles Studium</div>
+        <div *ngIf="!isCurrentDegree()"> {{getFinishedEcts()}} / {{degree.ectsNeeded}} ECTS abgeschlossen </div>
+      </div>
+    </div>
+  </div>
+</div>

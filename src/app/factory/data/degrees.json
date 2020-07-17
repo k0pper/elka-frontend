@@ -87,6 +87,29 @@
             "name": "Führungsqualitäten"
           }
         ]
+      },
+      {
+        "name": "Allgemeine Betriebswirtschaftslehre",
+        "ects": 5,
+        "tags": [
+          "Wirtschaft",
+          "BWL",
+          "Ökonomie",
+          "Bilanzen",
+          "Kapital"
+        ],
+        "professor": "Karl Dübon",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Grundlagen der BWL"
+          },
+          {
+            "name": "Bilanzierung"
+          },
+          {
+            "name": "Skonto"
+          }
+        ]
       }
     ]
   },

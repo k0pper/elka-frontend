@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../model/user';
 import { Progress } from '../model/progress';
+import { ScheduledSemesterFactory } from '../factory/scheduled.semester.factory';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class UserService {
     this.userDocument.set(
       JSON.parse(JSON.stringify(user))
     )
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   updateProgressAndSave(user: User, newProgress: Progress) {
@@ -35,12 +37,21 @@ export class UserService {
         localStorage.setItem("user", JSON.stringify(user));
         return;
       }
-      // No progress found, add new one
-      user.progresses.push(newProgress);
-      this.userDocument = this.usersCollection.doc(user.id);
-      this.userDocument.set(JSON.parse(JSON.stringify(user)));
-      localStorage.setItem("user", JSON.stringify(user));
     }
+  }
+
+  createEmptyProgressForDegree(user: User, degreeShortName: string) {
+    // No progress found, add new one
+    let newProgress: Progress = new Progress()
+      .setRefDegreeShortName(degreeShortName)
+      .setCurrentSemester(1)
+      .setFinishedCourses([])
+      .setScheduledSemesters(ScheduledSemesterFactory.getNEmptySemesters(4, 1));
+
+    user.progresses.push(newProgress);
+    this.userDocument = this.usersCollection.doc(user.id);
+    this.userDocument.set(JSON.parse(JSON.stringify(user)));
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   getUsersList(): AngularFirestoreCollection<User> {
@@ -57,9 +68,10 @@ export class UserService {
     for (let p of user.progresses) {
       if (p.refDegreeShortName == user.plannedDegree.shortName) {
         progress = p;
+        return progress;
       }
     }
-    return progress;
+    this.createEmptyProgressForDegree(user, user.plannedDegree.shortName);
   }
 
   getFinishedEcts(user: User) {

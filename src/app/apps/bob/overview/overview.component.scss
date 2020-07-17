@@ -4,10 +4,32 @@ mat-card {
 }
 
 .course {
-  padding: 15px 10px;
   background: lightgray;
-  border-radius: 3px;
-  margin-bottom: 3px;
+  border-radius: 0px;
+  margin-bottom: 7px;
+  height: 50px;
+  position: relative;
+
+  .course-progress-indicator {
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    background: #77dd77;
+    opacity: 0.50;
+    z-index: 1;
+  }
+
+  .course-progress-text, .content-blocks {
+    z-index: 2;
+    position: absolute;
+    padding-top: 14px;
+    padding-left: 15px;
+  }
+
+  .content-blocks {
+    right: 0;
+    padding-right: 15px;
+  }
 }
 
 b {

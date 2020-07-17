@@ -1,0 +1,42 @@
+mat-icon {
+  font-size: 46px;
+}
+
+.degree {
+  z-index: 11;
+  max-width: 100%;
+  position: relative;
+  padding: 15px 10px;
+  background: rgb(248, 248, 248);
+  margin-bottom: 2px;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  max-height: 50px;
+  transition: 0.2s;
+  outline: none;
+
+  &:hover {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.degree-name {
+  font-size: 18px;
+}
+
+.degree-text {
+  height: 46px;
+  position: relative;
+}
+
+.degree-info {
+  font-size: 14px;
+}
+
+.icon-container {
+  height: 46px;
+  position: relative;
+}

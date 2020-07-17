@@ -19,13 +19,7 @@ export class ScheduledCourseComponent implements OnInit {
   }
 
   getDoneContentBlocksPercentage() {
-    let mandatory = this.course.mandatoryContentBlocks;
-    let finished = this.user.finishedContentBlocks;
-    let n = 0;
-    for (let finishedBlock of finished) {
-      if ( mandatory.map(m => m.name).includes(finishedBlock.name) ) n +=1;
-    }
-    return Math.floor((n / mandatory.length) * 100)
+    return this.courseService.getDoneContentBlocksPercentage(this.user, this.course);
   }
 
   courseDone() {

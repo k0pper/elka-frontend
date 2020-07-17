@@ -27,7 +27,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScheduledCourseComponent } from './courses/course-progress-thumbnail/scheduled-course-thumbnail.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DegreesComponent } from './degrees/degrees.component';
+import { DegreeComponent } from './degrees/degree/degree-thumbnail.component';
+import { DegreeDetailsComponent, AreYouSureDialog } from './degrees/degree-details/degree-details.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -53,6 +57,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSnackBarModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatDialogModule,
+
     FlexLayoutModule,
   ],
   exports: [],
@@ -62,6 +68,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     CoursesComponent,
     ScheduledCourseComponent,
     CourseComponent,
+    DegreesComponent,
+    DegreeComponent,
+    DegreeDetailsComponent,
+    AreYouSureDialog,
     AdminComponent
   ],
 })

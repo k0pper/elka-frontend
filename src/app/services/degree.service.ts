@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Degree } from '../model/degree';
 
@@ -6,6 +6,8 @@ import { Degree } from '../model/degree';
 export class DegreeService {
   degreeCollection: AngularFirestoreCollection<Degree> = null;
   degreeDocument: AngularFirestoreDocument<Degree> = null;
+
+  public degreeChanged = new EventEmitter<any>();
 
   constructor(db: AngularFirestore) {
     this.degreeCollection = db.collection('/degrees');

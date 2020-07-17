@@ -14,12 +14,10 @@ export class ScheduleService {
     this.usersCollection = db.collection(this.usersPath);
   }
 
-
-  addEmptyScheduledSemester(user: User, index: number) {
-    let scheduledSemesters = this.userService.getCurrentProgress(user).scheduledSemesters;
-    scheduledSemesters.push(new ScheduledSemester().setIndex(index).setScheduledCourses([]));
-    this.userService.getUserById(user.id).valueChanges().subscribe((user: User) => {
-
-    })
-  }
+  // addEmptyScheduledSemester(user: User, startIndex: number, n: number) {
+  //   let scheduledSemesters = this.userService.getCurrentProgress(user).scheduledSemesters;
+  //   for (let i = 0; i<n; ++i) {
+  //     scheduledSemesters.push(new ScheduledSemester().setIndex(startIndex).setScheduledCourses([]));
+  //   }
+  // }
 }

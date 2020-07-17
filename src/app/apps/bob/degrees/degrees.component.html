@@ -1,0 +1,35 @@
+<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill class="degrees"
+routerLinkActive="router-link-active">
+  <mat-card fxFlex="45" fxFlexAlign="stretch">
+    <div style="height: 15px;"></div>
+
+    <mat-card-title>Alle Studiengänge</mat-card-title>
+
+    <mat-card-content>
+
+      <mat-form-field class="example-full-width">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Studiengänge durchsuchen</mat-label>
+        <input matInput placeholder="Studiengang eingeben"
+        [formControl]="searchFormControl"
+        (keyup)="filter()">
+      </mat-form-field>
+
+      <degree *ngFor="let deg of degrees" [user]="user" [degree]="deg" [routerLink]="['details', deg.shortName]"></degree>
+
+      <mat-spinner diameter="20" *ngIf="!degrees"></mat-spinner>
+
+      <div *ngIf="degrees?.length == 0">Keine Studiengänge übrig ...</div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-card fxFlex="55" class="degree-detail">
+    <mat-card-content>
+
+      <router-outlet></router-outlet>
+
+    </mat-card-content>
+  </mat-card>
+</div>

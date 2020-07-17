@@ -1,0 +1,55 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div *ngIf="!loading">
+  <mat-card-title>
+    Studiengang: <b>{{degree?.name}}</b> ({{degree?.shortName}})
+  </mat-card-title>
+  <div>
+    <p>
+      {{degree?.description}}
+    </p>
+  </div>
+
+  <div *ngIf="!loading" content fxLayout="column" fxLayoutGap="10px">
+
+    <div fxLayout=row fxLayoutAlign="start stretch">
+      <div fxFlex="35"><b>Benötigte ECTS:</b></div>
+      <div fxFlex="65"><b>{{degree?.ectsNeeded}}</b></div>
+    </div>
+
+    <div fxLayout=row fxLayoutAlign="start stretch">
+      <div fxFlex="35"><b>Mögliche Kurse:</b></div>
+    </div>
+    <div class="course-container">
+      <li *ngFor="let course of degree.validCourses">
+        {{course.name}}
+      </li>
+    </div>
+
+
+    <button mat-raised-button>
+      <mat-icon>menu_book</mat-icon>
+      Modulhandbuch herunterladen
+    </button>
+    <button *ngIf="user?.plannedDegree.shortName != degree?.shortName" (click)="openDialog()" mat-raised-button
+      color="primary">
+      <mat-icon>sync</mat-icon>
+      Als geplanten Abschluss setzen
+    </button>
+
+    <div matTooltip="Du planst diesen Studiengang bereits." matTooltipClass="my-tooltip" style="width: 100%;">
+      <button style="width: 100%;" *ngIf="user?.plannedDegree.shortName == degree?.shortName" disabled mat-raised-button color="primary">
+        <mat-icon>sync</mat-icon>
+        Als geplanten Abschluss setzen
+      </button>
+    </div>
+
+
+
+
+    <div *ngIf="loading">
+      <mat-spinner diameter="20"></mat-spinner>
+    </div>
+  </div>
+
+</div>

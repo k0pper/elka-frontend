@@ -31,12 +31,12 @@
         <div fxLayout=row fxLayoutAlign="start stretch">
           <div fxFlex="50"><b>ECTS Fortschritt</b></div>
           <div fxFlex="50" fxFlexAlign="center">
-            <mat-progress-bar mode="determinate" [value]="getEctsProgress()"></mat-progress-bar>
+            <mat-progress-bar style="height: 20px;" mode="determinate" [value]="getEctsProgress()"></mat-progress-bar>
           </div>
         </div>
 
-        <button mat-raised-button color="primary" [routerLink]="['/bob/courses']" >Zur Kursübersicht</button>
-        <button mat-raised-button color="primary">Abschluss ändern</button>
+        <button mat-raised-button color="primary" [routerLink]="['/bob/courses']"> <mat-icon>backup_table</mat-icon> Zur Kursübersicht</button>
+        <button mat-raised-button color="primary" [routerLink]="['/bob/degrees']"> <mat-icon>school</mat-icon> Zu den Abschlüssen</button>
 
         <div *ngIf="loading">
           <mat-spinner></mat-spinner>
@@ -49,7 +49,7 @@
     <mat-card-title>Kurse nach Semestern</mat-card-title>
     <mat-card-content>
       <mat-accordion>
-        <mat-expansion-panel hideToggle *ngFor="let semester of progress?.scheduledSemesters">
+        <mat-expansion-panel [expanded]="true" hideToggle *ngFor="let semester of progress?.scheduledSemesters">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Semester {{semester.index}}
@@ -59,7 +59,9 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
             <div class="course" *ngFor="let course of semester.scheduledCourses">
-                {{course.name}} ({{course.ects}} ECTS)
+                <div class="course-progress-text">{{course.name}} ({{course.ects}} ECTS)</div>
+                <div class="course-progress-indicator" [ngStyle]="{'width': getProgressWidth(user, course)}"></div>
+                <div class="content-blocks">4/10 Inhaltsblöcke</div>
             </div>
         </mat-expansion-panel>
       </mat-accordion>

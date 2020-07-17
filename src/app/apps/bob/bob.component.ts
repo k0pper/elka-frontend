@@ -36,7 +36,7 @@ export class BobComponent implements OnInit {
     let json = null;
     this.userService.getUserById(this.user.id).valueChanges()
       .subscribe(data => {
-        json = JSON.stringify(data);
+        json = JSON.stringify(data, null, 2);
         var element = document.createElement('a');
         element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(json));
         element.setAttribute('download', "userdata.json");

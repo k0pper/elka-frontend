@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/users.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ScheduledSemester } from 'src/app/model/scheduled.semester';
 import { Progress } from 'src/app/model/progress';
+import { CourseService } from 'src/app/services/course.service';
+import { Course } from 'src/app/model/course';
 
 @Component({
   templateUrl: './overview.component.html',
@@ -18,7 +20,7 @@ export class OverviewComponent implements OnInit {
   loading = true;
   panelOpenState = false;
 
-  constructor(private authService: AuthService, private userService: UserService) { }
+  constructor(private authService: AuthService, private userService: UserService, private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -49,6 +51,10 @@ export class OverviewComponent implements OnInit {
 
   getNumberOfPlannedCourses(): number {
     return this.userService.getNumberOfPlannedCourses(this.user);
+  }
+
+  getProgressWidth(user: User, course: Course) {
+    return this.courseService.getDoneContentBlocksPercentage(user, course) + '%';
   }
 
 }
