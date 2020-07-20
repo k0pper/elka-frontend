@@ -2,11 +2,24 @@
 
 // incldues basic angular material style
 @include mat-core();
-
 $elka-theme-primary: mat-palette($mat-red, 900);
 $elka-theme-accent: mat-palette($mat-red, 800);
 $elka-theme-warn: mat-palette($mat-red);
-
 $elka-theme: mat-light-theme($elka-theme-primary, $elka-theme-accent, $elka-theme-warn);
+@include angular-material-theme($elka-theme);
 
-@include angular-material-theme($elka-theme)
+
+
+// Define an alternate dark theme.
+$one-todo-primary: mat-palette($mat-green, 500);
+$one-todo-accent:  mat-palette($mat-green, 400);
+$one-todo-warn:    mat-palette($mat-red);
+$one-todo-theme:   mat-light-theme($one-todo-primary, $one-todo-accent, $one-todo-warn);
+
+.one-todo-theme {
+  @include angular-material-theme($one-todo-theme);
+  button {
+    color: white !important;
+  }
+}
+

@@ -1,0 +1,43 @@
+
+
+
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="25px" class="header">
+  <div fxFlex="33" fxFlexAlign="stretch">
+    <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="25px" class="btn-group">
+
+      <button mat-raised-button color="primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange.next(viewDate)">
+        <mat-icon>arrow_left</mat-icon> Zurück
+      </button>
+
+      <button mat-raised-button color="primary" mwlCalendarToday [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange.next(viewDate)">
+        <mat-icon>calendar_today</mat-icon> Heute
+      </button>
+
+      <button mat-raised-button color="primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange.next(viewDate)"> Weiter <mat-icon>arrow_right</mat-icon> </button>
+    </div>
+  </div>
+  <div fxFlex="33" fxFlexAlign="stretch">
+    <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="25px">
+      <h2 class="date">{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h2>
+    </div>
+  </div>
+  <div fxFlex="33" fxFlexAlign="stretch">
+    <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="25px" class="btn-group">
+      <button mat-raised-button color="primary" (click)="viewChange.emit(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month">
+        <mat-icon>date_range </mat-icon>Monat
+      </button>
+      <button mat-raised-button color="primary" (click)="viewChange.emit(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week">
+        <mat-icon>view_week</mat-icon> Woche
+      </button>
+      <button mat-raised-button color="primary" (click)="viewChange.emit(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day">
+        <mat-icon>calendar_view_day</mat-icon> Tag
+      </button>
+    </div>
+  </div>
+</div>

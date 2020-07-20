@@ -3,6 +3,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { User } from '../model/user';
 import { Progress } from '../model/progress';
 import { ScheduledSemesterFactory } from '../factory/scheduled.semester.factory';
+import { Course } from '../model/course';
+import { Degree } from '../model/degree';
 
 @Injectable({
   providedIn: 'root'
@@ -44,9 +46,7 @@ export class UserService {
     // No progress found, add new one
     let newProgress: Progress = new Progress()
       .setRefDegreeShortName(degreeShortName)
-      .setCurrentSemester(1)
-      .setFinishedCourses([])
-      .setScheduledSemesters(ScheduledSemesterFactory.getNEmptySemesters(4, 1));
+      .setCurrentSemester(1);
 
     user.progresses.push(newProgress);
     this.userDocument = this.usersCollection.doc(user.id);
@@ -74,8 +74,8 @@ export class UserService {
     this.createEmptyProgressForDegree(user, user.plannedDegree.shortName);
   }
 
-  getFinishedEcts(user: User) {
-    let validCourses = user.plannedDegree.validCourses;
+  getFinishedEctsForDegree(user: User, degree: Degree) {
+    let validCourses = degree.validCourses;
     let finishedContentBlocks = user.finishedContentBlocks;
 
     let finishedEcts = 0;
@@ -86,13 +86,18 @@ export class UserService {
     return finishedEcts;
   }
 
+  getAllFinishedCourses(user: User) {
+
+
+  }
+
   getRemainingEcts(user: User) {
-    let ectsFinished = this.getFinishedEcts(user);
+    let ectsFinished = this.getFinishedEctsForDegree(user, user.plannedDegree);
     return user.plannedDegree.ectsNeeded - ectsFinished;
   }
 
   getTempo(user: User) {
-    let finishedEcts = this.getFinishedEcts(user);
+    let finishedEcts = this.getFinishedEctsForDegree(user, user.plannedDegree);
     let currentProgress = this.getCurrentProgress(user);
     if (currentProgress.currentSemester == 1) {
       return finishedEcts;
@@ -102,7 +107,7 @@ export class UserService {
 
   getNumberOfPlannedCourses(user: User) {
     let numOfPlannedCourses = 0;
-    for (let semester of this.getCurrentProgress(user).scheduledSemesters) {
+    for (let semester of user.scheduledSemesters) {
       for (let c of semester.scheduledCourses) {
         numOfPlannedCourses += 1;
       }
@@ -110,7 +115,5 @@ export class UserService {
     return numOfPlannedCourses;
   }
 
-  getPlannedCourses(user: User) {
 
-  }
 }

@@ -32,8 +32,17 @@
   overflow: hidden;
   margin-bottom: 2px;
 
+  .course-name, .course-subtitle {
+    font-weight: 300;
+  }
+
   .course-name {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .course-subtitle {
+    font-size: 12px;
   }
 
 
@@ -74,11 +83,24 @@
   background: rgb(255, 81, 81);
 }
 
-.invalid-info-icon {
+::ng-deep.tooltip-green {
+  font-size: 14px;
+  background: #52B668;
+}
+
+.info-icon {
   position: absolute;
   bottom: 5px;
   right: 2px;
   color: black;
   opacity: 0.5;
+  cursor: default;
+}
+
+.checked-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: green;
   cursor: default;
 }

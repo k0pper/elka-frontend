@@ -14,6 +14,7 @@ import { AddressFactory } from 'src/app/factory/address.factory';
 import { ProgressFactory } from 'src/app/factory/progress.factory';
 import { ContentBlockFactory } from 'src/app/factory/contentblock.factory';
 import { ContentBlock } from 'src/app/model/contentblock';
+import { ScheduledSemesterFactory } from 'src/app/factory/scheduled.semester.factory';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -85,7 +86,8 @@ export class LoginComponent implements OnInit {
           .setAddress(AddressFactory.getAddress())
           .setPlannedDegree(DegreeFactory.getRandomDegree("IWI"))
           .setProgresses([ProgressFactory.getProgress()])
-          .setFinishedContentBlocks(ContentBlockFactory.getNRandomContentBlocks(6));
+          .setFinishedContentBlocks(ContentBlockFactory.getNRandomContentBlocks(20))
+          .setScheduledSemesters(ScheduledSemesterFactory.getNEmptySemesters(4, 1));
         this.userService.createUpdateUser(user);
         this.authservice.setLocalStorage(user);
 

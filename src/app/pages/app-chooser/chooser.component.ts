@@ -17,7 +17,8 @@ export class ChooserComponent implements OnInit {
       descr: 'Behalte deine Fristen und Termine im Überblick',
       color: 'green',
       image: 'assets/images/onetodo.png',
-      class: "onetodo"
+      class: "onetodo",
+      link: "one-todo"
     },
     {
       name: 'BOB STUDY BUILDER',
@@ -53,7 +54,7 @@ export class ChooserComponent implements OnInit {
   }
 
   signOut() {
-    this.authservice.signOut('auth');
+    this.authservice.signOut();
   }
 
   logLocal() {

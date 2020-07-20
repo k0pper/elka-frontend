@@ -1,5 +1,8 @@
 <div class="course" cdkDrag>
-  <div style="font-size: 18px;">{{course.name}}</div>
+  <div class="course-name">
+    <div>{{course.name}}</div>
+    <div *ngIf="courseDone()" style="font-weight: 300; color: #52B668"> (Abgeschlossen)</div>
+  </div>
   <div style="height: 5px;"></div>
-  <div style="color: gray;">{{course.ects}} ECTS, {{course.mandatoryContentBlocks.length}} Inhaltsblöcke</div>
+  <div class="course-subtitle">{{course.ects}} ECTS, {{course.mandatoryContentBlocks.length}} Inhaltsblöcke, {{course.professor}}</div>
 </div>

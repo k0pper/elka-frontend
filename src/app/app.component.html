@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="open">
+    <div class="sidenav-content">
+      <div class="sidenav-header">
+        <div class="header-content">
+          <h1>ELKA</h1>
+          <p>Dein innovativer Studienplaner</p>
+        </div>
+      </div>
+      <div class="sidenav-apps">
+        <div class="app clickable" [routerLink]="['/one-todo']" routerLinkActive="active" > <mat-icon class="one-todo">calendar_today</mat-icon> ONE TODO</div>
+        <div class="app clickable" style="outline: none;" [routerLink]="['/bob']" routerLinkActive="active"> <mat-icon class="bob">backup_table</mat-icon> STUDY BUILDER</div>
+        <div class="app clickable"> <mat-icon class="xams">school</mat-icon>  XAMS</div>
+        <div class="app clickable"> <mat-icon class="atlantis"> storage</mat-icon> ATLANTIS</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="app clickable"> <mat-icon>person</mat-icon> Profil</div>
+      <div class="app clickable" (click)="downloadJson()"> <mat-icon>lock</mat-icon> Pers. Daten herunterladen</div>
+      <mat-divider></mat-divider>
+      <div class="app clickable" style="color: red;" (click)="signOut()"> <mat-icon>exit_to_app</mat-icon> Abmelden</div>
+      <mat-divider></mat-divider>
+      <div class="app clickable" style="color: blue; outline: none;" [routerLink]="['/bob/admin']" > <mat-icon>admin_panel_settings</mat-icon> Admin Lobby</div>
+      <div class="app clickable" style="color: blue; outline: none;" [routerLink]="['/bob/professor']" > <mat-icon>grading</mat-icon> Professor's Area</div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

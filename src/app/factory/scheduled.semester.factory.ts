@@ -1,4 +1,3 @@
-import { CourseFactory } from './course.factory';
 import { ScheduledSemester } from '../model/scheduled.semester';
 import * as scheduledSemesters from './data/scheduled-semesters.json';
 

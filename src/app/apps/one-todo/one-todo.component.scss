@@ -1,0 +1,52 @@
+.one-todo-theme {
+  height: 100%;
+  overflow: hidden;
+  .mat-toolbar, .mat-icon, .home, .user-info {
+    color: white;
+  }
+}
+
+
+.example-icon {
+  padding: 0 14px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.user-info {
+  text-align: right;
+  font-weight: 300;
+
+  * {
+    line-height: 22px;
+  }
+}
+
+.mat-toolbar {
+  height: 7%;
+}
+
+.bob-content {
+  padding: 10px;
+  height: 89%;
+  position: relative;
+}
+
+.home {
+  outline: none;
+  cursor: pointer;
+  transition: 200ms;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
+  &:hover {
+    transform: translateX(5px);
+  }
+
+  &:active {
+    color: darkred;
+  }
+}

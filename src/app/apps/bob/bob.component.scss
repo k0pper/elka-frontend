@@ -1,3 +1,4 @@
+
 .example-icon {
   padding: 0 14px;
 }
@@ -6,21 +7,58 @@
 }
 
 .user-info {
-  font-size: small;
   text-align: right;
+  font-weight: 300;
 
   * {
     line-height: 22px;
   }
 }
 
+.mat-toolbar {
+  height: 7%;
+}
+
 .bob-content {
-  height: 100%;
-  padding: 15px;
-  overflow: hidden;
+  padding: 10px;
+  height: 89%;
+  position: relative;
 }
 
 .home {
   outline: none;
   cursor: pointer;
+  transition: 200ms;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
+  &:hover {
+    transform: translateX(5px);
+  }
+
+  &:active {
+    color: darkred;
+  }
+}
+
+.notifications {
+  max-height: 500px;
+}
+
+::ng-deep.mat-menu-panel {
+  max-width: none !important;
+  max-height: 250px !important;
+  overflow-y: auto;
+  width: 700px !important;
+}
+
+::ng-deep.mat-menu-content {
+  padding: 20px;
+}
+
+.mat-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

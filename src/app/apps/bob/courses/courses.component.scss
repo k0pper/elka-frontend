@@ -23,16 +23,45 @@
 }
 
 
-#courseCatalog {
-  min-height: 800px;
-}
-
 .course-checkbox {
   margin-bottom: 15px;
 }
 
 h2 {
-  text-align: center;
   font-weight: 300;
   font-size: 24px;
+}
+
+.course-search-header {
+  max-height: 25%;
+}
+
+.mat-card-content {
+  min-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.courses-content {
+  max-height: 75%;
+}
+
+#courseCatalog {
+  min-height: 250px;
+}
+
+.semesters-content {
+  height: 100%;
+}
+
+.open-todo-button {
+  background: #52B668;
+  position: absolute;
+  bottom: 50px;
+  right: 187px;
+  z-index: 5000;
+
+  :disabled {
+    background: gray;
+  }
 }

@@ -17,12 +17,16 @@ export class CourseService {
   }
 
   getDoneContentBlocksPercentage(user: User, course: Course) {
+    return Math.floor((this.getDoneContentBlocksForCourse(user, course) / course.mandatoryContentBlocks.length) * 100)
+  }
+
+  getDoneContentBlocksForCourse(user: User, course: Course): number {
     let mandatory = course.mandatoryContentBlocks;
     let finished = user.finishedContentBlocks;
     let n = 0;
     for (let finishedBlock of finished) {
       if ( mandatory.map(m => m.name).includes(finishedBlock.name) ) n +=1;
     }
-    return Math.floor((n / mandatory.length) * 100)
+    return n;
   }
 }

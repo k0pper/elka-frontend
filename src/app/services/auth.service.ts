@@ -25,7 +25,7 @@ export class AuthService implements OnInit {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  signOut(redirect) {
+  signOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.clearLocalStorage();
@@ -44,4 +44,9 @@ export class AuthService implements OnInit {
   getCurrentUser(): User {
     return JSON.parse(localStorage.getItem('user'));
   }
+
+  hasRole(role: ROLES) {
+    return this.getCurrentUser().roles.includes(ROLES.ADMIN);
+  }
+
 }

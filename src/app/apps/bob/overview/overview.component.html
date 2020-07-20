@@ -1,7 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill>
-  <mat-card fxFlex="35" fxFlexAlign="stretch">
+<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" fxFlexFill>
+  <mat-card fxFlex="50" fxFlexAlign="stretch">
     <mat-card-title>Dein Studium</mat-card-title>
-    <div style="height: 15px;"></div>
     <mat-card-content>
       <div *ngIf="!loading" content fxLayout="column" fxLayoutGap="20px">
         <div fxLayout=row fxLayoutAlign="start stretch">
@@ -9,11 +8,11 @@
           <div fxFlex="50">{{user.plannedDegree.name}} ({{user.plannedDegree.shortName}})</div>
         </div>
         <div fxLayout=row fxLayoutAlign="start stretch">
-          <div fxFlex="50"><b>Semester:</b></div>
+          <div fxFlex="50"><b>Studiensemester:</b></div>
           <div fxFlex="50"> {{getCurrentSemester()}} </div>
         </div>
         <div fxLayout=row fxLayoutAlign="start stretch">
-          <div fxFlex="50"><b>Abgeschlossene ECTS:</b></div>
+          <div fxFlex="50"><b>ECTS abgeschlossen in {{user.plannedDegree.name}}:</b></div>
           <div fxFlex="50"> {{getFinishedEcts()}} </div>
         </div>
         <div fxLayout=row fxLayoutAlign="start stretch">
@@ -28,15 +27,25 @@
           <div fxFlex="50"><b>Aktuelles Tempo:</b></div>
           <div fxFlex="50"> ~ {{getTempo() | number:'1.2-2'}} ECTS / Semester</div>
         </div>
-        <div fxLayout=row fxLayoutAlign="start stretch">
-          <div fxFlex="50"><b>ECTS Fortschritt</b></div>
-          <div fxFlex="50" fxFlexAlign="center">
-            <mat-progress-bar style="height: 20px;" mode="determinate" [value]="getEctsProgress()"></mat-progress-bar>
+
+        <mat-card-title>Ähnliche Abschlüsse</mat-card-title>
+        <mat-spinner *ngIf="!similarDegrees" diameter="30"></mat-spinner>
+        <div fxLayout=row fxLayoutAlign="start stretch" class="top3">
+          <div *ngFor="let deg of similarDegrees" fxFlex="33">
+            <div style="display: block" class="deg-box" [routerLink]="['/bob/degrees/details', deg.shortName]">
+              <h2 [ngClass]="{greenbold: deg.name == user.plannedDegree.name}">{{deg.name}}</h2>
+              <canvas baseChart [data]="[getFinishedEctsForDegree(deg), deg.ectsNeeded-getFinishedEctsForDegree(deg)]"
+                [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="pieColors"
+                [options]="pieChartOptions"></canvas>
+            </div>
           </div>
         </div>
 
-        <button mat-raised-button color="primary" [routerLink]="['/bob/courses']"> <mat-icon>backup_table</mat-icon> Zur Kursübersicht</button>
-        <button mat-raised-button color="primary" [routerLink]="['/bob/degrees']"> <mat-icon>school</mat-icon> Zu den Abschlüssen</button>
+
+
+        <button mat-raised-button color="primary" [routerLink]="['/bob/degrees']">
+          <mat-icon>school</mat-icon> Zu den Abschlüssen
+        </button>
 
         <div *ngIf="loading">
           <mat-spinner></mat-spinner>
@@ -45,11 +54,11 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card fxFlex="65">
+  <mat-card fxFlex="50">
     <mat-card-title>Kurse nach Semestern</mat-card-title>
     <mat-card-content>
       <mat-accordion>
-        <mat-expansion-panel [expanded]="true" hideToggle *ngFor="let semester of progress?.scheduledSemesters">
+        <mat-expansion-panel hideToggle *ngFor="let semester of user?.scheduledSemesters">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Semester {{semester.index}}
@@ -58,13 +67,19 @@
               {{semester.scheduledCourses.length}} geplante Kurs(e)
             </mat-panel-description>
           </mat-expansion-panel-header>
-            <div class="course" *ngFor="let course of semester.scheduledCourses">
-                <div class="course-progress-text">{{course.name}} ({{course.ects}} ECTS)</div>
-                <div class="course-progress-indicator" [ngStyle]="{'width': getProgressWidth(user, course)}"></div>
-                <div class="content-blocks">4/10 Inhaltsblöcke</div>
-            </div>
+          <div class="course" *ngFor="let course of semester.scheduledCourses">
+            <div class="course-progress-text">{{course.name}} ({{course.ects}} ECTS)</div>
+            <div class="course-progress-indicator" [ngStyle]="{'width': getProgressWidth(user, course)}"></div>
+            <div class="content-blocks">
+              {{getNumOfFinishedCbForCourse(user, course)}}/{{course.mandatoryContentBlocks.length}} Inhaltsblöcke</div>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </mat-card-content>
+
+    <button mat-raised-button color="primary" style="width: 100%;" [routerLink]="['/bob/courses']">
+      <mat-icon>backup_table</mat-icon> Zur Kursübersicht
+    </button>
+
   </mat-card>
 </div>

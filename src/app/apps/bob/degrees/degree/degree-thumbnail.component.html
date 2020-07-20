@@ -7,7 +7,11 @@
       </div>
       <div fxFlex="50" class="degree-info">
         <div *ngIf="isCurrentDegree()" style="color: rgb(0, 185, 31);">Aktuelles Studium</div>
-        <div *ngIf="!isCurrentDegree()"> {{getFinishedEcts()}} / {{degree.ectsNeeded}} ECTS abgeschlossen </div>
+        <div class="degree-subtitle">
+          <div *ngIf="!isCurrentDegree()"> {{getFinishedEcts()}} / {{degree.ectsNeeded}} ECTS abgeschlossen</div>
+          <div *ngIf="!isCurrentDegree() && getLostEcts() > 0" [ngClass]="{orange: getLostEcts() > 0}"> ({{ getLostEcts() }} verlorene ECTS)</div>
+          <div *ngIf="!isCurrentDegree() && getLostEcts() < 0" class="green"> ({{ -getLostEcts() }} dazugewonnene ECTS)</div>
+        </div>
       </div>
     </div>
   </div>

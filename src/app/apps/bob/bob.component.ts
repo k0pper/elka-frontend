@@ -4,6 +4,7 @@ import { User, ROLES } from 'src/app/model/user';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/users.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   templateUrl: 'bob.component.html',
@@ -14,36 +15,45 @@ export class BobComponent implements OnInit {
   user: User;
   downloadJsonHref;
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
+  notifications = [
+    {
+      by: 'Hans Jürgen',
+      foreignCourseName: 'Grundlagen der Wirtschaftsinformatik',
+      homeCourseName: 'Einführung in die Wirtschaftsinformatik'
+    },
+    {
+      by: 'Tim Schneider',
+      foreignCourseName: 'Höhere Mathematik 1',
+      homeCourseName: 'Mathematik 1'
+    },
+    {
+      by: 'Sandra Sauer',
+      foreignCourseName: 'Sozialöknomie',
+      homeCourseName: 'Volkswirtschaftslehre'
+    },
+    {
+      by: 'Tom Hengst',
+      foreignCourseName: 'Theoretische Informatik',
+      homeCourseName: 'Theoretische Informatik'
+    },
+    {
+      by: 'Philipp Nase',
+      foreignCourseName: 'Algorithmen und Datenstrukturen',
+      homeCourseName: 'Programmieren 2'
+    }
+  ];
+
+  constructor(private authService: AuthService, private userService: UserService, private router: Router, private sidenavService: SidenavService) { }
 
   ngOnInit() {
     this.user = this.authService.getCurrentUser();
-  }
-
-  signOut(redirect) {
-    this.authService.signOut(redirect);
-  }
-
-  routeTo(route) {
-
   }
 
   isAdmin() {
     return this.user.roles.includes(ROLES.ADMIN);
   }
 
-  downloadJson(){
-    let json = null;
-    this.userService.getUserById(this.user.id).valueChanges()
-      .subscribe(data => {
-        json = JSON.stringify(data, null, 2);
-        var element = document.createElement('a');
-        element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(json));
-        element.setAttribute('download', "userdata.json");
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click(); // simulate click
-        document.body.removeChild(element);
-      });
-}
+  toggleSidenav() {
+    this.sidenavService.open();
+  }
 }

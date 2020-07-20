@@ -7,6 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import { CoursesComponent } from './courses/courses.component';
 import { DegreesComponent } from './degrees/degrees.component';
 import { DegreeDetailsComponent } from './degrees/degree-details/degree-details.component';
+import { ProfessorComponent } from './professor/professor.component';
 
 const routes: Routes = [
   {
@@ -17,11 +18,6 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'overview',
-        pathMatch: 'full'
-      },
-      {
-        path: 'admin',
-        component: AdminComponent,
         pathMatch: 'full'
       },
       {
@@ -39,6 +35,16 @@ const routes: Routes = [
             pathMatch: 'full'
          }
         ]
+      },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'professor',
+        component: ProfessorComponent,
+        pathMatch: 'full'
       },
       {
         path: '**',

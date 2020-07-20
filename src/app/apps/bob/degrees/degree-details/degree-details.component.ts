@@ -7,6 +7,8 @@ import { DegreeService } from 'src/app/services/degree.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CourseService } from 'src/app/services/course.service';
+import { Course } from 'src/app/model/course';
 
 @Component({
   selector: 'degree-details',
@@ -21,7 +23,7 @@ export class DegreeDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
 
   constructor(private userService: UserService, private authService: AuthService, private degreeService: DegreeService, private route: ActivatedRoute,
-    public dialog: MatDialog) { }
+    private courseService: CourseService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser()
@@ -51,6 +53,10 @@ export class DegreeDetailsComponent implements OnInit, OnDestroy {
       console.log("emitting service event")
       this.degreeService.degreeChanged.emit(result);
     });
+  }
+
+  finished(course: Course) {
+    return this.courseService.getDoneContentBlocksPercentage(this.user, course) == 100;
   }
 
 }

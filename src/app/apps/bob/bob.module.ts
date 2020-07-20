@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BobComponent } from './bob.component';
-import { Routes, RouterModule } from '@angular/router';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,8 +29,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DegreesComponent } from './degrees/degrees.component';
 import { DegreeComponent } from './degrees/degree/degree-thumbnail.component';
 import { DegreeDetailsComponent, AreYouSureDialog } from './degrees/degree-details/degree-details.component';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatBadgeModule } from '@angular/material/badge';
+import { ChartsModule } from 'ng2-charts';
+import { MatDividerModule } from '@angular/material/divider';
+import { ProfessorComponent } from './professor/professor.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -58,6 +62,12 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCheckboxModule,
     MatTooltipModule,
     MatDialogModule,
+    MatSidenavModule,
+    MatBadgeModule,
+    ChartsModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatAutocompleteModule,
 
     FlexLayoutModule,
   ],
@@ -72,7 +82,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     DegreeComponent,
     DegreeDetailsComponent,
     AreYouSureDialog,
-    AdminComponent
+    AdminComponent,
+    ProfessorComponent
   ],
 })
 export class BobModule { }

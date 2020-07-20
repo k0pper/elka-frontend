@@ -28,6 +28,10 @@ export class DegreeComponent implements OnInit {
   }
 
   getFinishedEcts() {
-    return this.userService.getFinishedEcts(this.user);
+    return this.userService.getFinishedEctsForDegree(this.user, this.degree);
+  }
+
+  getLostEcts() {
+    return this.degreeService.getLostEcts(this.user, this.degree);
   }
 }

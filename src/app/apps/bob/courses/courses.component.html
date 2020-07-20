@@ -1,8 +1,8 @@
-<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill class="search">
+<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill class="courses-app">
   <mat-card fxFlex="35" fxFlexAlign="stretch">
-    <div style="height: 15px;"></div>
-    <mat-card-content>
 
+    <div class="course-search-header">
+      <mat-card-title>Geplantes Studium: {{user.plannedDegree.name}}</mat-card-title>
       <mat-form-field class="example-full-width">
         <mat-icon matPrefix>search</mat-icon>
         <mat-label>Kurse durchsuchen</mat-label>
@@ -21,32 +21,34 @@
         <mat-checkbox (change)="filter()" [(ngModel)]="onlyShowRelevant">
           Nur Kurse für geplanten Abschluss anzeigen
         </mat-checkbox>
+        <mat-checkbox (change)="filter()" [(ngModel)]="onlyShowNotFinished">
+          Nur offene Kurse anzeigen
+        </mat-checkbox>
       </div>
+    </div>
 
-      <mat-spinner diameter="25" *ngIf="!courses"></mat-spinner>
-
+    <mat-card-content class="courses-content">
       <div *ngIf="courses?.length == 0">Keine Kurse mehr übrig ...</div>
-
+      <mat-spinner diameter="25" *ngIf="!courses"></mat-spinner>
       <div id="courseCatalog" cdkDropList #courseCatalog="cdkDropList"
-      [cdkDropListData]="courses"
-      [cdkDropListConnectedTo]="[semester1List,semester2List,semester3List,semester4List]"
-      (cdkDropListDropped)="removeSchedule($event)"
-      cdkDropListSortingDisabled>
-        <course [course]="course" *ngFor="let course of courses"></course>
+        [cdkDropListData]="courses"
+        [cdkDropListConnectedTo]="[semester1List,semester2List,semester3List,semester4List]"
+        (cdkDropListDropped)="removeSchedule($event)"
+        cdkDropListSortingDisabled>
+          <course [user]="user" [course]="course" *ngFor="let course of courses"></course>
       </div>
-
     </mat-card-content>
-
   </mat-card>
 
   <mat-card fxFlex="65" class="semesters">
-    <mat-card-content>
+    <mat-card-content class="semesters-content">
       <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="25px" fxFlexFill>
 
         <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester1List="cdkDropList" [cdkDropListData]="courseList1"
         [cdkDropListConnectedTo]="[semester2List,semester3List,semester4List,courseCatalog]"
         (cdkDropListDropped)="dropScheduled($event)">
-          <h2>Semester {{progress.currentSemester}}</h2>
+          <h2>{{progress.currentSemester}}. Semester</h2>
+          <p style="color: gray;" *ngIf="courseList1.length == 0">Nichts geplant dieses Semester. Einen Kurs hierherziehen um ihn hinzuzufügen.</p>
           <div *ngFor="let c of courseList1">
             <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
@@ -55,7 +57,8 @@
         <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester2List="cdkDropList" [cdkDropListData]="courseList2"
         [cdkDropListConnectedTo]="[semester1List,semester3List,semester4List,courseCatalog]"
         (cdkDropListDropped)="dropScheduled($event)">
-          <h2>Semester {{progress.currentSemester + 1}}</h2>
+          <h2> {{progress.currentSemester + 1}}. Semester</h2>
+          <p style="color: gray;" *ngIf="courseList2.length == 0">Nichts geplant dieses Semester. Einen Kurs hierherziehen um ihn hinzuzufügen.</p>
           <div *ngFor="let c of courseList2">
             <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
@@ -64,7 +67,8 @@
         <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester3List="cdkDropList" [cdkDropListData]="courseList3"
         [cdkDropListConnectedTo]="[semester1List,semester2List,semester4List,courseCatalog]"
         (cdkDropListDropped)="dropScheduled($event)">
-          <h2>Semester {{progress.currentSemester + 2}}</h2>
+          <h2>{{progress.currentSemester + 2}}. Semester</h2>
+          <p style="color: gray;" *ngIf="courseList3.length == 0">Nichts geplant dieses Semester. Einen Kurs hierherziehen um ihn hinzuzufügen.</p>
           <div *ngFor="let c of courseList3">
             <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
@@ -73,7 +77,8 @@
         <div cdkDropList fxFlex="25" fxFlexAlign="stretch" #semester4List="cdkDropList" [cdkDropListData]="courseList4"
         [cdkDropListConnectedTo]="[semester1List,semester2List,semester3List,courseCatalog]"
         (cdkDropListDropped)="dropScheduled($event)">
-          <h2>Semester {{progress.currentSemester + 3}}</h2>
+          <h2>{{progress.currentSemester + 3}}. Semester</h2>
+          <p style="color: gray;" *ngIf="courseList4.length == 0">Nichts geplant dieses Semester. Einen Kurs hierherziehen um ihn hinzuzufügen.</p>
           <div *ngFor="let c of courseList4">
             <scheduled-course [user]="user" [course]="c"></scheduled-course>
           </div>
@@ -82,10 +87,16 @@
       </div>
 
       <h1 *ngIf="saving">saving</h1>
+
       <button (click)="saveSchedule()" [disabled]="!dirty || saving"
       mat-raised-button color="primary"
-      style="position: absolute; bottom: 125px; right: 50px;">
+      style="position: absolute; bottom: 50px; right: 50px; z-index: 5000">
       <mat-icon>save</mat-icon> Speichern</button>
+
+      <button [routerLink]="['/one-todo']" [disabled]="dirty"
+      mat-raised-button color="primary"
+      class="open-todo-button">
+      <mat-icon>calendar_today</mat-icon> In ONE TODO öffnen</button>
 
     </mat-card-content>
   </mat-card>

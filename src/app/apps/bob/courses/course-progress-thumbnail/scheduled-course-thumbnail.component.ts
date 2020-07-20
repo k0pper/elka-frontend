@@ -37,4 +37,8 @@ export class ScheduledCourseComponent implements OnInit {
       anrechnen zu lassen, kontaktiere den jeweiligen Kursverantwortlichen.`
   }
 
+  finishedMessage() {
+    return `Du hast alle Inhaltsblöcke des Kurses ${this.course.name} abgeschlossen!`
+  }
+
 }

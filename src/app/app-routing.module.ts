@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'bob',
     loadChildren: () => import('./apps/bob/bob.module').then(m => m.BobModule)
   },
+  {
+    path: 'one-todo',
+    loadChildren: () => import('./apps/one-todo/one-todo.module').then(m => m.OneTodoModule)
+  },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
 
 ];

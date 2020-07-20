@@ -3,6 +3,7 @@ import { add } from 'lodash';
 import { Degree } from './degree';
 import { Progress } from './progress';
 import { ContentBlock } from './contentblock';
+import { ScheduledSemester } from './scheduled.semester';
 
 export enum ROLES {
   STUDENT = "STUDENT",
@@ -22,6 +23,8 @@ export class User {
   plannedDegree: Degree;
   progresses: Progress[];
   finishedContentBlocks: ContentBlock[];
+  scheduledSemesters: ScheduledSemester[];
+
 
   constructor(id) {
     this.id = id;
@@ -57,6 +60,10 @@ export class User {
   }
   setFinishedContentBlocks(contentBlocks: ContentBlock[]): User {
     this.finishedContentBlocks = contentBlocks;
+    return this;
+  }
+  setScheduledSemesters(scheduledSemesters: ScheduledSemester[]): User {
+    this.scheduledSemesters = scheduledSemesters;
     return this;
   }
 }

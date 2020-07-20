@@ -22,7 +22,7 @@
     </div>
     <div class="course-container">
       <li *ngFor="let course of degree.validCourses">
-        {{course.name}}
+        {{course.name}} <mat-icon style="color: green; font-size: 16px;" *ngIf="finished(course)">check</mat-icon>
       </li>
     </div>
 
@@ -38,7 +38,8 @@
     </button>
 
     <div matTooltip="Du planst diesen Studiengang bereits." matTooltipClass="my-tooltip" style="width: 100%;">
-      <button style="width: 100%;" *ngIf="user?.plannedDegree.shortName == degree?.shortName" disabled mat-raised-button color="primary">
+      <button style="width: 100%;" *ngIf="user?.plannedDegree.shortName == degree?.shortName" disabled mat-raised-button
+        color="primary">
         <mat-icon>sync</mat-icon>
         Als geplanten Abschluss setzen
       </button>

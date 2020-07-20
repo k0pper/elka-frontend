@@ -113,7 +113,7 @@
       "Kriminal",
       "Sicherheit"
     ],
-    "professor": "Sonja Blumenstrauß",
+    "professor": "Anton Hackerman",
     "mandatoryContentBlocks": [
       {
         "name": "Grundlegende Kryptographie"
@@ -143,6 +143,177 @@
       },
       {
         "name": "Skonto"
+      }
+    ]
+  },
+  {
+    "name": "Mathematik 1",
+    "ects": 5,
+    "tags": [
+      "Mathematik",
+      "Abstrakt",
+      "Grundlagen",
+      "Rechnen",
+      "Rechnung",
+      "Gleichung"
+    ],
+    "professor": "Thomas Morgenstern",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Lineare Algebra"
+      },
+      {
+        "name": "Differenzialrechnung"
+      },
+      {
+        "name": "Integralrechnung"
+      },
+      {
+        "name": "Komplexe Zahlen"
+      },
+      {
+        "name": "Einführung numerische Mathematik"
+      }
+    ]
+  },
+  {
+    "name": "Fertigungstechnik",
+    "ects": 5,
+    "tags": [
+      "Maschinen",
+      "Fertigung",
+      "Technik"
+    ],
+    "professor": "Schönelise Fertigung",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Urformen"
+      },
+      {
+        "name": "Umformen"
+      },
+      {
+        "name": "Trennen"
+      },
+      {
+        "name": "Fügen"
+      },
+      {
+        "name": "Beschichten"
+      }
+    ]
+  },
+  {
+    "name": "Software Architektur",
+    "ects": 5,
+    "tags": [
+      "Software",
+      "Programmieren",
+      "IT",
+      "Entwicklung",
+      "Architektur"
+    ],
+    "professor": "Jürgen Zimmermann",
+    "mandatoryContentBlocks": [
+      {
+        "name": "RESTful Web Services"
+      },
+      {
+        "name": "Cloud Computing"
+      },
+      {
+        "name": "UML"
+      }
+    ]
+  },
+  {
+    "name": "Anwendungsprojekt",
+    "ects": 10,
+    "tags": [
+      "Projekt",
+      "Management",
+      "IT",
+      "Wirtschaft",
+      "Team",
+      "Entwicklung",
+      "Kooperation"
+    ],
+    "professor": "Rainer Neumann",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Konzept"
+      },
+      {
+        "name": "Prototyperstellung"
+      },
+      {
+        "name": "Dokumentation"
+      },
+      {
+        "name": "Abschlusspräsentation"
+      }
+    ]
+  },
+  {
+    "name": "Theoretische Informatik",
+    "ects": 7,
+    "tags": [
+      "Informatik",
+      "Theoretisch",
+      "Abstrakt",
+      "Logik"
+    ],
+    "professor": "Andreas Gmelin",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Zustandsautomaten"
+      },
+      {
+        "name": "Logik"
+      },
+      {
+        "name": "Binäre Bäume"
+      }
+    ]
+  },
+  {
+    "name": "E-Business",
+    "ects": 5,
+    "tags": [
+      "Commerce",
+      "Electronic-Commerce",
+      "Android",
+      "Business"
+    ],
+    "professor": "Ingo Stengel",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Grundlagen E-Business"
+      },
+      {
+        "name": "Geschäftsmodelle"
+      },
+      {
+        "name": "Android App"
+      }
+    ]
+  },
+  {
+    "name": "International Business Networks",
+    "ects": 5,
+    "tags": [
+      "Commerce"
+    ],
+    "professor": "Rudolf Internationalis",
+    "mandatoryContentBlocks": [
+      {
+        "name": "Unternehmensnetzwerke"
+      },
+      {
+        "name": "Erfolgs- und Scheiterungsfaktoren"
+      },
+      {
+        "name": "Kooperationen"
       }
     ]
   }

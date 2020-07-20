@@ -10,6 +10,19 @@
   overflow: hidden;
   max-height: 50px;
 
+  .course-name {
+    font-size: 16px;
+
+    div {
+      display: inline;
+    }
+  }
+
+  .course-subtitle {
+    font-weight: 300;
+  }
+
+
   &:hover {
     z-index: 4;
   }

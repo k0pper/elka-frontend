@@ -1,0 +1,67 @@
+
+  <div fxLayout fxLayoutAlign="center center" style="height: 80%;">
+    <mat-card fxFlex="50%">
+        <mat-card-title>Regelmäßige Vorlesung hinzufügen</mat-card-title>
+        <p>Die Vorlesung wird für das aktuelle Semester als regelmäßige Veranstaltung eingetragen.</p>
+        <mat-card-content fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+
+            <mat-form-field class="example-full-width" fxFlex="65%">
+              <input type="text"
+                     placeholder="Kurs auswählen"
+                     aria-label="Number"
+                     matInput
+                     [formControl]="courseFormControl"
+                     [matAutocomplete]="auto"
+                     (keyup)="filter()">
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)='setSelectedCourse($event.option.value)'>
+                <mat-option *ngFor="let c of filteredCourses" [value]="c.name">
+                  {{c.name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" fxFlex="35%">
+              <mat-label>Wochentag auswählen</mat-label>
+              <mat-select  (selectionChange)='setSelectedWeekday($event.value)'>
+                <mat-option *ngFor="let weekday of weekdays" [value]="weekday">{{weekday}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+
+
+            <mat-form-field appearance="fill" fxFlex="50%">
+              <mat-label>Beginn der Veranstaltung (HH:MM)</mat-label>
+              <input matInput type="text" [formControl]="beginFormControl">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" fxFlex="50%">
+              <mat-label>Ende der Veranstaltung (HH:MM)</mat-label>
+              <input matInput type="text" [formControl]="endFormControl">
+            </mat-form-field>
+
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+
+
+            <mat-form-field appearance="fill" fxFlex="100%">
+              <mat-label>Gebäude und Raum</mat-label>
+              <input matInput type="text" [formControl]="locationFormControl">
+            </mat-form-field>
+
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+            <button [disabled]="!isValid()" (click)="createLecture()" mat-raised-button color="primary">Vorlesung erstellen</button>
+          </div>
+        </mat-card-content>
+
+
+    </mat-card>
+  </div>
+

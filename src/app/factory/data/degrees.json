@@ -110,8 +110,112 @@
             "name": "Skonto"
           }
         ]
+      },
+      {
+        "name": "Mathematik 1",
+        "ects": 5,
+        "tags": [
+          "Mathematik",
+          "Abstrakt",
+          "Grundlagen",
+          "Rechnen",
+          "Rechnung",
+          "Gleichung"
+        ],
+        "professor": "Thomas Morgenstern",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Lineare Algebra"
+          },
+          {
+            "name": "Differenzialrechnung"
+          },
+          {
+            "name": "Integralrechnung"
+          },
+          {
+            "name": "Komplexe Zahlen"
+          },
+          {
+            "name": "Einführung numerische Mathematik"
+          }
+        ]
+      },
+      {
+        "name": "Software Architektur",
+        "ects": 5,
+        "tags": [
+          "Software",
+          "Programmieren",
+          "IT",
+          "Entwicklung",
+          "Architektur"
+        ],
+        "professor": "Jürgen Zimmermann",
+        "mandatoryContentBlocks": [
+          {
+            "name": "RESTful Web Services"
+          },
+          {
+            "name": "Cloud Computing"
+          },
+          {
+            "name": "UML"
+          }
+        ]
+      },
+      {
+        "name": "Anwendungsprojekt",
+        "ects": 10,
+        "tags": [
+          "Projekt",
+          "Management",
+          "IT",
+          "Wirtschaft",
+          "Team",
+          "Entwicklung",
+          "Kooperation"
+        ],
+        "professor": "Rainer Neumann",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Konzept"
+          },
+          {
+            "name": "Prototyperstellung"
+          },
+          {
+            "name": "Dokumentation"
+          },
+          {
+            "name": "Abschlusspräsentation"
+          }
+        ]
+      },
+      {
+        "name": "E-Business",
+        "ects": 10,
+        "tags": [
+          "Commerce",
+          "Electronic-Commerce",
+          "Android",
+          "Business"
+        ],
+        "professor": "Ingo Stengel",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Grundlagen E-Business"
+          },
+          {
+            "name": "Geschäftsmodelle"
+          },
+          {
+            "name": "Android App"
+          }
+        ]
       }
     ]
+
   },
 
   {
@@ -172,13 +276,148 @@
           "Kriminal",
           "Sicherheit"
         ],
-        "professor": "Sonja Blumenstrauß",
+        "professor": "Anton Hackerman",
         "mandatoryContentBlocks": [
           {
             "name": "Grundlegende Kryptographie"
           },
           {
             "name": "Tatortvisualisierung"
+          }
+        ]
+      },
+      {
+        "name": "Theoretische Informatik",
+        "ects": 10,
+        "tags": [
+          "Informatik",
+          "Theoretisch",
+          "Abstrakt",
+          "Logik"
+        ],
+        "professor": "Andreas Gmelin",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Zustandsautomaten"
+          },
+          {
+            "name": "Logik"
+          },
+          {
+            "name": "Binäre Bäume"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "name": "International IT-Business",
+    "ectsNeeded": 210,
+    "shortName": "IBB",
+    "description": "Für alle Wirtschaftsinformatik-Studenten die etwas weniger IT, dafür mehr Ausland und Wirtschaft haben möchten.",
+    "validCourses": [
+      {
+        "name": "Programmieren 1",
+        "ects": 5,
+        "tags": [
+          "Algorithmen",
+          "Code",
+          "Abstrakt",
+          "Informatik",
+          "Software"
+        ],
+        "professor": " Udo Müller",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Schleifen"
+          },
+          {
+            "name": "If-Bedingungen"
+          }
+        ]
+      },
+      {
+        "name": "Einführung in die Wirtschaftsinformatik",
+        "ects": 5,
+        "tags": [
+          "Wirtschaft",
+          "Informatik",
+          "Wirtschaftsinformatik",
+          "Consulting",
+          "Software"
+        ],
+        "professor": "Rainer Neumann",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Die Geschichte des Computers"
+          },
+          {
+            "name": "O(n)-Notation"
+          }
+        ]
+      },
+      {
+        "name": "Software Architektur",
+        "ects": 5,
+        "tags": [
+          "Software",
+          "Programmieren",
+          "IT",
+          "Entwicklung",
+          "Architektur"
+        ],
+        "professor": "Jürgen Zimmermann",
+        "mandatoryContentBlocks": [
+          {
+            "name": "RESTful Web Services"
+          },
+          {
+            "name": "Cloud Computing"
+          },
+          {
+            "name": "UML"
+          }
+        ]
+      },
+      {
+        "name": "E-Business",
+        "ects": 10,
+        "tags": [
+          "Commerce",
+          "Electronic-Commerce",
+          "Android",
+          "Business"
+        ],
+        "professor": "Ingo Stengel",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Grundlagen E-Business"
+          },
+          {
+            "name": "Geschäftsmodelle"
+          },
+          {
+            "name": "Android App"
+          }
+        ]
+      },
+      {
+        "name": "International Business Networks",
+        "ects": 5,
+        "tags": [
+          "Commerce"
+        ],
+        "professor": "Rudolf Internationalis",
+        "mandatoryContentBlocks": [
+          {
+            "name": "Unternehmensnetzwerke"
+          },
+          {
+            "name": "Erfolgs- und Scheiterungsfaktoren"
+          },
+          {
+            "name": "Kooperationen"
           }
         ]
       }

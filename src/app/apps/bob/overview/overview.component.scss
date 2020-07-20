@@ -1,6 +1,5 @@
 mat-card {
   width: 100%;
-  height: 90%;
 }
 
 .course {
@@ -34,4 +33,28 @@ mat-card {
 
 b {
   color: gray;
+}
+
+.top3{
+  h2 {
+    font-weight: 300;
+    text-align: center;
+    outline: none;
+  }
+
+  .deg-box {
+    transition: 200ms;
+    outline: none;
+    cursor: default;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+  }
+}
+
+.greenbold {
+  color: green;
+  font-weight: 400 !important;
 }

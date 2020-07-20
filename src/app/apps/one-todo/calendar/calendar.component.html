@@ -1,0 +1,30 @@
+<calendar-header [(view)]="view" [(viewDate)]="viewDate">
+</calendar-header>
+
+<div [ngSwitch]="view" class="overflow">
+  <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+    (beforeViewRender)="updateCalendarEvents($event)" weekStartsOn="1" [excludeDays]="[0, 6]">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+    (beforeViewRender)="updateCalendarEvents($event)" weekStartsOn="1" [dayStartHour]="8" [excludeDays]="[0, 6]"
+    [dayEndHour]="19" >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events"
+    (beforeViewRender)="updateCalendarEvents($event)" weekStartsOn="1" [dayStartHour]="8"
+    [dayEndHour]="19">
+  </mwl-calendar-day-view>
+
+  <button style="position: absolute; bottom: 100px; right: 300px; opacity: 0.8;" color="primary" mat-raised-button
+  (click)="downloadiCal()">
+    <mat-icon>cloud_download</mat-icon>
+     Als iCal exportieren
+  </button>
+
+  <button style="background: #b71c1c; position: absolute; bottom: 100px; right: 100px; opacity: 0.8;" color="primary" mat-raised-button
+  [routerLink]="['/bob/courses']" >
+    <mat-icon>backup_table</mat-icon>
+     Study Builder öffnen
+  </button>
+
+</div>
+

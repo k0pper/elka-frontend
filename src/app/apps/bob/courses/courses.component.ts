@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/model/course';
 import { CourseService } from 'src/app/services/course.service';
 import { FormControl } from '@angular/forms';
@@ -10,19 +10,22 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Progress } from 'src/app/model/progress';
 import { ScheduleService } from 'src/app/services/schedule.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LectureService } from 'src/app/services/lecture.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponent implements OnInit, OnDestroy {
   user: User;
 
   courses: Course[];
   rawCourses: Course[];
   loaded = false;
   onlyShowRelevant = false;
+  onlyShowNotFinished = false;
 
   tags: string[] = [];
   searchFormControl = new FormControl('');
@@ -40,12 +43,12 @@ export class CoursesComponent implements OnInit {
   progress: Progress;
 
   constructor(private authService: AuthService, private courseService: CourseService, private userService: UserService,
-    private scheduleService: ScheduleService, private _snackBar: MatSnackBar) { }
+    private scheduleService: ScheduleService, private lectureService: LectureService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
     this.progress = this.userService.getCurrentProgress(this.user);
-    this.scheduledSemesters = this.progress.scheduledSemesters;
+    this.scheduledSemesters = this.user.scheduledSemesters;
 
     this.courseList1 = this.scheduledSemesters[0].scheduledCourses;
     this.courseList2 = this.scheduledSemesters[1].scheduledCourses;
@@ -55,8 +58,13 @@ export class CoursesComponent implements OnInit {
     this.courseService.getCourses().valueChanges().subscribe((courses: Course[]) => {
       if (!this.loaded) this.rawCourses = courses;
       this.loaded = true;
-      this.courses = this.filterDoubles('', courses);
+      this.courses = this.filterDoubles('', courses).sort((a, b) => {
+        if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
+        else return -1;
+      });
     });
+  }
+  ngOnDestroy():void {
   }
 
   addTag() {
@@ -110,9 +118,9 @@ export class CoursesComponent implements OnInit {
     this.scheduledSemesters[3].scheduledCourses = this.courseList4;
 
     let progress = this.userService.getCurrentProgress(this.user)
-    progress.scheduledSemesters = this.scheduledSemesters;
+    this.user.scheduledSemesters = this.scheduledSemesters;
+    this.userService.createUpdateUser(this.user);
 
-    this.userService.updateProgressAndSave(this.user, progress);
     this.dirty = false;
     this.saving = false;
     this.openSnackBar("Stundenplan gespeichert!", "Schließen")
@@ -150,11 +158,31 @@ export class CoursesComponent implements OnInit {
     return courses.filter(course => course.name.toLowerCase().includes((this.searchFormControl.value as string).toLowerCase()))
   }
 
+  filterByIsDone(event, courses): Course[] {
+    if (!this.onlyShowNotFinished) {
+      return courses;
+    } else {
+      return courses.filter(course => {
+        return !this.courseDone(course);
+      })
+    }
+  }
+
+  courseDone(course: Course) {
+    return this.courseService.getDoneContentBlocksPercentage(this.user, course) >= 100;
+  }
+
   filter() {
     let filtered1 = this.filterDoubles('', this.rawCourses);
     let filtered2 = this.filterByName('', filtered1);
     let filtered3 = this.filterByRelevant('', filtered2);
-    this.courses = filtered3;
+    let filtered4 = this.filterByIsDone('', filtered3);
+    this.courses = filtered4;
+  }
+
+  openInOneTodo() {
+
+
   }
 
 

@@ -37,6 +37,7 @@ import { ChooserComponent } from './pages/app-chooser/chooser.component';
 
     // Material
     MaterialModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

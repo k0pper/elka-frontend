@@ -1,8 +1,16 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <div class="home" [routerLink]="['/bob']">ELKA Study Builder</div>
+
+      <button mat-flat-button color="primary" style="padding: 0px !important; min-width: 45px !important;"
+      (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
+      <div class="home" [routerLink]="['/bob']">ELKA Study Builder</div>
     <span class="example-spacer"></span>
+
     <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+      <mat-icon [matBadge]="notifications.length" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+
+    <button mat-flat-button color="primary">
       <div class="user-info">
         <div>{{user.email}}</div>
         <div>{{user.firstName}} {{user.lastName}}</div>
@@ -11,14 +19,27 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Profil</button>
-  <button mat-menu-item (click)="downloadJson()">Export</button>
-  <button mat-menu-item [routerLink]="['/chooser']">App Wechseln</button>
-  <button style="color: red" *ngIf="isAdmin()" mat-menu-item [routerLink]="['admin']">Admin Lobby</button>
-  <button mat-menu-item (click)="signOut('auth')">Abmelden</button>
+<mat-menu #menu="matMenu" xPosition="before" class="notifications">
+  <div class="notification">
+
+    <div *ngFor="let noty of notifications">
+      <div fxLayout fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div fxFlex="50%">
+          <p style="margin: 0;">Anrechnungsantrag von <b>{{noty.by}}</b> "{{noty.foreignCourseName}}" für "{{noty.homeCourseName}}"</p>
+        </div>
+        <div fxFlex="50%" fxFlexAlign="center center" style="height: 100%;">
+          <button style="margin-right: 10px;" mat-raised-button color="default"> <mat-icon>cancel</mat-icon> Später ansehen</button>
+          <button mat-raised-button color="primary"> <mat-icon>east</mat-icon> Antrag öffnen</button>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+
+  </div>
 </mat-menu>
+
 
 <div class="bob-content">
   <router-outlet></router-outlet>
 </div>
+

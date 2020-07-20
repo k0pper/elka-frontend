@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from 'src/app/model/course';
 import { CourseService } from 'src/app/services/course.service';
 import { FormControl } from '@angular/forms';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { ScheduledSemester } from 'src/app/model/scheduled.semester';
 import { UserService } from 'src/app/services/users.service';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { Progress } from 'src/app/model/progress';
-import { ScheduleService } from 'src/app/services/schedule.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Degree } from 'src/app/model/degree';
 import { DegreeService } from 'src/app/services/degree.service';

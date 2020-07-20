@@ -1,6 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Degree } from '../model/degree';
+import { User } from '../model/user';
+import { Course } from '../model/course';
+import { CourseService } from './course.service';
+import { UserService } from './users.service';
 
 @Injectable({providedIn: 'root'})
 export class DegreeService {
@@ -9,7 +13,7 @@ export class DegreeService {
 
   public degreeChanged = new EventEmitter<any>();
 
-  constructor(db: AngularFirestore) {
+  constructor(db: AngularFirestore, private userService: UserService) {
     this.degreeCollection = db.collection('/degrees');
   }
 
@@ -20,11 +24,12 @@ export class DegreeService {
     this.degreeDocument.set(JSON.parse( JSON.stringify(degree)))
   }
 
-  getDegreeByShortName(shortName: string): AngularFirestoreDocument<Degree> {
-    return this.degreeCollection.doc(shortName);
-  }
-
   getDegrees() {
     return this.degreeCollection;
+  }
+
+  getLostEcts(user: User, newDegree: Degree) {
+    return this.userService.getFinishedEctsForDegree(user, user.plannedDegree) -
+      this.userService.getFinishedEctsForDegree(user, newDegree);
   }
 }

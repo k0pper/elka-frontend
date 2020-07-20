@@ -1,0 +1,24 @@
+<div class="one-todo-theme">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+
+      <button mat-flat-button color="primary" style="padding: 0px !important; min-width: 45px !important;"
+        (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="home" [routerLink]="['/one-todo']">ELKA ONE TODO</div>
+      <span class="example-spacer"></span>
+
+      <button mat-flat-button color="primary">
+        <div class="user-info">
+          <div>{{user.email}}</div>
+          <div>{{user.firstName}} {{user.lastName}}</div>
+        </div>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div style="max-height: 93%; overflow-y: scroll;"><router-outlet></router-outlet></div>
+
+</div>
+
