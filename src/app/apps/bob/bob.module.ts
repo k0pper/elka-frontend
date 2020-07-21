@@ -37,6 +37,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ProfessorComponent } from './professor/professor.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -83,7 +84,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     DegreeDetailsComponent,
     AreYouSureDialog,
     AdminComponent,
-    ProfessorComponent
+    ProfessorComponent,
+    ProfileComponent,
   ],
 })
 export class BobModule { }

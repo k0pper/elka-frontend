@@ -14,6 +14,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 export class BobComponent implements OnInit {
   user: User;
   downloadJsonHref;
+  roles = [];
 
   notifications = [
     {
@@ -46,14 +47,19 @@ export class BobComponent implements OnInit {
   constructor(private authService: AuthService, private userService: UserService, private router: Router, private sidenavService: SidenavService) { }
 
   ngOnInit() {
+    this.getRoles();
     this.user = this.authService.getCurrentUser();
-  }
-
-  isAdmin() {
-    return this.user.roles.includes(ROLES.ADMIN);
   }
 
   toggleSidenav() {
     this.sidenavService.open();
   }
+
+  getRoles() {
+    const userId = this.authService.getCurrentUser().id;
+    this.userService.getUserById(userId).valueChanges().subscribe((user: User) => {
+      this.roles = user.roles;
+    });
+  }
+
 }

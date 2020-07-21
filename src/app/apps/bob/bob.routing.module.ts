@@ -8,6 +8,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { DegreesComponent } from './degrees/degrees.component';
 import { DegreeDetailsComponent } from './degrees/degree-details/degree-details.component';
 import { ProfessorComponent } from './professor/professor.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,11 @@ const routes: Routes = [
       {
         path: 'professor',
         component: ProfessorComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
         pathMatch: 'full'
       },
       {

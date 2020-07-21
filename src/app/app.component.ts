@@ -5,7 +5,6 @@ import { UserService } from './services/users.service';
 import { AuthService } from './services/auth.service';
 import { User, ROLES } from './model/user';
 import { Subscription } from 'rxjs';
-import exportFromJSON from 'export-from-json'
 
 @Component({
   selector: 'app-root',
@@ -16,6 +15,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sidenav') public sidenav: MatSidenav;
   user: User;
   sub: Subscription;
+  roles = [];
 
   constructor(private sidenavService: SidenavService, private userService: UserService,
     private authService: AuthService) {
@@ -30,14 +30,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.getRoles();
     this.user = this.authService.getCurrentUser();
-  }
-
-  downloadJson() {
-    const data = this.user;
-    const fileName = `Persoenliche-Daten-${this.user.firstName}-${this.user.lastName}`
-    const exportType = 'json'
-    exportFromJSON({ data, fileName, exportType })
   }
 
   signOut() {
@@ -45,8 +39,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.authService.signOut();
   }
 
-  isAdmin() {
-    return this.user.roles.includes(ROLES.ADMIN);
+  getRoles() {
+    const userId = this.authService.getCurrentUser().id;
+    this.userService.getUserById(userId).valueChanges().subscribe((user: User) => {
+      this.roles = user.roles;
+    });
   }
 
 }

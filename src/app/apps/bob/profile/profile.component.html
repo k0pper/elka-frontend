@@ -1,0 +1,80 @@
+<div fxLayout fxLayoutAlign="center center" style="height: 100%;" fxLayoutGap="0px">
+  <mat-card fxFlex="50%">
+
+    <mat-card-title>Profil</mat-card-title>
+    <h2>Stammdaten</h2>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="30%">
+        <span>Vorname</span>
+      </div>
+      <div fxFlex="70%" style="width: 100%;">
+        <mat-form-field style="width: 100%;">
+          <input type="text" matInput disabled [value]="user.firstName">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="30%">
+        <span>Rollen</span>
+      </div>
+      <div fxFlex="70%" style="width: 100%;">
+        <mat-checkbox disabled [ngModel]="true" *ngFor="let role of user.roles">
+          {{role.charAt(0).toUpperCase() + role.slice(1).toLowerCase()}} &nbsp;
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="30%">
+        <span>E-Mail Adresse</span>
+      </div>
+      <div fxFlex="70%" style="width: 100%;">
+        <mat-form-field style="width: 100%;">
+          <input type="text" matInput disabled [value]="user.email">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <h2>Adresse</h2>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="30%">
+        <span>Straße</span>
+      </div>
+      <div fxFlex="70%" style="width: 100%;">
+        <mat-form-field style="width: 100%;">
+          <input type="text" matInput disabled [value]="user.address.street + ' ' + user.address.houseNumber">
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="30%">
+        <span>Stadt</span>
+      </div>
+      <div fxFlex="70%" style="width: 100%;">
+        <mat-form-field style="width: 100%;">
+          <input type="text" matInput disabled [value]="user.address.city">
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="30%">
+        <span>Länderkürzel</span>
+      </div>
+      <div fxFlex="70%" style="width: 100%;">
+        <mat-form-field style="width: 100%;">
+          <input type="text" matInput disabled [value]="user.address.countryCode">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button (click)="downloadPersonalInformation()" mat-raised-button color="primary">
+        <mat-icon>cloud_download</mat-icon>
+        Über mich gespeicherte Daten exportieren
+      </button>
+    </div>
+
+
+  </mat-card>
+</div>

@@ -191,11 +191,13 @@ export class CalendarComponent implements OnInit {
         repeating: repeatingData,
       });
     })
+
+    console.log(cal.toJSON())
+
     downloadjs(cal.toString(), "Vorlesung.ics", "text/calendar")
   }
 
   getNextDayOfWeek(date: Date, dayOfWeek) {
-    // Code to check that date and dayOfWeek are valid left as an exercise ;)
     var resultDate = new Date(date.getTime());
     resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
     return resultDate;
