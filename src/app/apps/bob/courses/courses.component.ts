@@ -12,6 +12,8 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LectureService } from 'src/app/services/lecture.service';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { AIDialogComponent } from './ai-dialog/ai-dialog';
 
 @Component({
   selector: 'app-courses',
@@ -43,7 +45,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   progress: Progress;
 
   constructor(private authService: AuthService, private courseService: CourseService, private userService: UserService,
-    private scheduleService: ScheduleService, private lectureService: LectureService, private _snackBar: MatSnackBar) { }
+    private scheduleService: ScheduleService, private lectureService: LectureService, private _snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
@@ -180,9 +182,14 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.courses = filtered4;
   }
 
-  openInOneTodo() {
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AIDialogComponent, {
+      width: '50%',
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      console.log("dialog closed")
 
-
+    });
   }
 
 

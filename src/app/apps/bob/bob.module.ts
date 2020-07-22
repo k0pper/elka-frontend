@@ -35,9 +35,12 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { ChartsModule } from 'ng2-charts';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProfessorComponent } from './professor/professor.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ProfileComponent } from './profile/profile.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { AIDialogComponent } from './courses/ai-dialog/ai-dialog';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   imports: [
@@ -69,7 +72,8 @@ import { ProfileComponent } from './profile/profile.component';
     MatDividerModule,
     MatSelectModule,
     MatAutocompleteModule,
-
+    MatStepperModule,
+    MatChipsModule,
     FlexLayoutModule,
   ],
   exports: [],
@@ -86,6 +90,7 @@ import { ProfileComponent } from './profile/profile.component';
     AdminComponent,
     ProfessorComponent,
     ProfileComponent,
+    AIDialogComponent,
   ],
 })
 export class BobModule { }

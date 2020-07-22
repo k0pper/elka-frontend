@@ -16,6 +16,7 @@ import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ChooserComponent } from './pages/app-chooser/chooser.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ChooserComponent } from './pages/app-chooser/chooser.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),

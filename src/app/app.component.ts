@@ -5,6 +5,8 @@ import { UserService } from './services/users.service';
 import { AuthService } from './services/auth.service';
 import { User, ROLES } from './model/user';
 import { Subscription } from 'rxjs';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   roles = [];
 
   constructor(private sidenavService: SidenavService, private userService: UserService,
-    private authService: AuthService) {
+    private authService: AuthService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon(
+      `brain`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/brain.svg")
+    );
   }
 
   ngOnDestroy(): void {

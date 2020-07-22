@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>Passende Kurse vorschlagen lassen</h1>
+<span>Dieser Service nutzt künstliche Intelligenz um anhand von positiv bewerteten Kursen, eigenen Präferenzen
+  und Präferenzen von vergleichbaren Studenten passende Kursvorschläge zu generieren.
+</span>
+
+<div mat-dialog-content *ngIf="!loading">
+  <mat-vertical-stepper [linear]="true" #stepper>
+
+    <mat-step>
+      <ng-template matStepLabel>Interessante Stichwörter eingeben</ng-template>
+      <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let interest of interests" [selectable]="selectable" [removable]="removable"
+            (removed)="removeInterest(interest)">
+            {{interest}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Neues interessantes Stichwort" [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addInterest($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Auzuschließende Stichwörter eingeben</ng-template>
+      <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList1 aria-label="Fruit selection">
+          <mat-chip *ngFor="let ex of excludes" [selectable]="selectable" [removable]="removable"
+            (removed)="removeExclude(ex)">
+            {{ex}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Stichwort zum ausschließen" [matChipInputFor]="chipList1"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addExclude($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </mat-step>
+
+
+    <mat-step style="word-wrap: break-word;">
+      <ng-template matStepLabel>Bestätigen</ng-template>
+      <mat-checkbox>
+        Ich willige ein, dass meine Daten in anonymisierter Form <br>
+        zur Verbesserung dieses Services verwendet werden dürfen.
+      </mat-checkbox>
+    </mat-step>
+
+  </mat-vertical-stepper>
+
+</div>
+
+<div [@inOutAnimation] *ngIf="loading && !done" class="loading-container"></div>
+<div [@inOutAnimation] *ngIf="done" class="check-container"></div>
+<div [@simpleFadeAnimation] class="loading-message" *ngIf="loading">{{message}}</div>
+
+
+
+<div mat-dialog-actions style="margin-top: 20px;">
+  <button mat-flat-button (click)="onNoClick()">Abbrechen</button>
+  <button  mat-flat-button color="primary" (click)="onNoClick()" *ngIf="done" >Kurse anzeigen</button>
+  <button  mat-flat-button color="primary" *ngIf="!done" [disabled]="loading" (click)="getSuggestions()">Kurse vorschlagen</button>
+</div>
